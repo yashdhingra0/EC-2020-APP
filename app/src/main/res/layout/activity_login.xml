@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgd"
+
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/loggo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.3"
+        android:gravity="left"
+        android:text="@string/login_tite"
+        android:textColor="@color/light_blue"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.5"
+
+        android:gravity="left"
+        android:text="@string/continue_login_msg"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.3"
+        android:gravity="bottom"
+        android:text="@string/mob_no"
+        android:textColor="@color/white">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/num_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="0.4"
+        android:drawableLeft="@drawable/ic_call_black_24dp"
+        android:inputType="number"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/login_button"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_weight="0.4"
+        android:background="@drawable/round_button"
+        android:text="@string/sign_in_title"
+        android:textColor="@color/black"
+        android:textSize="22dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_marginBottom="40dp"
+        android:layout_weight="1.2"
+        android:gravity="bottom">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1.2"
+            android:gravity="center"
+            android:text="@string/dont_account_msg"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/open_signup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:text="@string/create_account_msg"
+            android:textColor="@color/light_blue"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+</LinearLayout>

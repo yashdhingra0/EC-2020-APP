@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">EC-2020-APP</string>
+    <string name="mob_no">Mobile Number</string>
+    <string name="login_tite">Login</string>
+    <string name="continue_login_msg">To Continue your account !</string>
+    <string name="sign_in_title">Sign In</string>
+    <string name="dont_account_msg">Don\'t have an account?</string>
+    <string name="create_account_msg">CreateAccount</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="existing_user">Already have an Account !</string>
+    <string name="register_culmyca">Register for Culmyca 20!</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="sign_out">Log Out</string>
+    <string name="please_wait">Wait</string>
+
 </resources>
