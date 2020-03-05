@@ -1,67 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:orientation="vertical"
     tools:context=".MainActivity">
-<TextView
-        android:text="Welcome User"
 
-    android:layout_margin="50dp"
-    android:layout_gravity="center"
-    android:textSize="40dp"
-    android:layout_width="wrap_content"
-    android:layout_height="0dp"
-    android:layout_weight="3"
-/>
-    <TextView
-        android:id="@+id/fetch_name"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+    <ImageView
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@drawable/beutifuls"/>
 
-        android:layout_gravity="center"
-        android:text="@string/please_wait"
-        android:textSize="27dp" />
 
     <TextView
-        android:id="@+id/fetch_college"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:text="@string/please_wait"
-        android:textSize="27dp" />
-
-    <TextView
-        android:id="@+id/fetch_email"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:text="@string/please_wait"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/fetch_mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:text="@string/please_wait"
-        android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/log_out"
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:layout_gravity="center"
-        android:background="@drawable/round_button"
-        android:text="@string/sign_out" />
+        android:text="Events"
+        android:layout_below="@+id/gallery"
+        android:paddingTop="20dp"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:layout_margin="20dp"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclyer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recycler1"
+        android:layout_marginTop="10dp"/>
 
 
-</LinearLayout>
+
+
+</RelativeLayout>

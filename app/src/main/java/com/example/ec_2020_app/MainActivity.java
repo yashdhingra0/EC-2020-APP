@@ -3,6 +3,8 @@ package com.example.ec_2020_app;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ec_2020_app.adapter.EventsAdapter;
+import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,12 +37,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        log_out = findViewById(R.id.log_out);
+      //  log_out = findViewById(R.id.log_out);
 
-        show_name = findViewById(R.id.fetch_name);
-        show_college = findViewById(R.id.fetch_college);
-        show_email = findViewById(R.id.fetch_email);
-        show_mobile = findViewById(R.id.fetch_mobile);
+     //   show_name = findViewById(R.id.fetch_name);
+     //   show_college = findViewById(R.id.fetch_college);
+    //    show_email = findViewById(R.id.fetch_email);
+     //   show_mobile = findViewById(R.id.fetch_mobile);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler1);
+        RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(new EventsAdapter());
+
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView2.setAdapter(new EventsAdapter2());
+
+
         final String mmobile = getIntent().getStringExtra("mmobile");
 
 
@@ -59,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
                             String temp_email = dataSnapshot.child("email").getValue().toString();
                             String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
 
-                            show_name.setText(temp_name);
-                            show_college.setText(temp_college);
-                            show_email.setText(temp_email);
-                            show_mobile.setText(temp_mobile);
+                           // show_name.setText(temp_name);
+                          //  show_college.setText(temp_college);
+                          //  show_email.setText(temp_email);
+                          //  show_mobile.setText(temp_mobile);
                         }
                         else
                         {
-                            show_email.setText("You should first sigu up and then come");
+                           // show_email.setText("You should first sigu up and then come");
                             Toast.makeText(MainActivity.this, "You should first sigu up and then come", Toast.LENGTH_LONG).show();
                             Intent goto_signup = new Intent(MainActivity.this,sign_up.class);
                             startActivity(goto_signup);
@@ -81,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-        log_out.setOnClickListener(new View.OnClickListener() {
+    /*    log_out.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -93,9 +108,10 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(go_to_login);
                 }
             }
-        });
+        });*/
 
 
     }
+
 
 }
