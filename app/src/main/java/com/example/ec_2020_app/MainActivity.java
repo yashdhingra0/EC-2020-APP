@@ -3,6 +3,8 @@ package com.example.ec_2020_app;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ec_2020_app.adapter.EventsAdapter;
+import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -33,12 +37,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        log_out = findViewById(R.id.log_out);
+      //  log_out = findViewById(R.id.log_out);
 
-        show_name = findViewById(R.id.fetch_name);
-        show_college = findViewById(R.id.fetch_college);
-        show_email = findViewById(R.id.fetch_email);
-        show_mobile = findViewById(R.id.fetch_mobile);
+     //   show_name = findViewById(R.id.fetch_name);
+     //   show_college = findViewById(R.id.fetch_college);
+    //    show_email = findViewById(R.id.fetch_email);
+     //   show_mobile = findViewById(R.id.fetch_mobile);
+
+        RecyclerView recyclerView = findViewById(R.id.recycler1);
+        RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView.setAdapter(new EventsAdapter());
+
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+        recyclerView2.setAdapter(new EventsAdapter2());
+
+
         final String mmobile = getIntent().getStringExtra("mmobile");
 
 
@@ -97,5 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 }
