@@ -74,14 +74,14 @@ public class MainActivity extends AppCompatActivity {
                             String temp_email = dataSnapshot.child("email").getValue().toString();
                             String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
 
-                            show_name.setText(temp_name);
-                            show_college.setText(temp_college);
-                            show_email.setText(temp_email);
-                            show_mobile.setText(temp_mobile);
+                           // show_name.setText(temp_name);
+                          //  show_college.setText(temp_college);
+                          //  show_email.setText(temp_email);
+                          //  show_mobile.setText(temp_mobile);
                         }
                         else
                         {
-                            show_email.setText("You should first sigu up and then come");
+                           // show_email.setText("You should first sigu up and then come");
                             Toast.makeText(MainActivity.this, "You should first sigu up and then come", Toast.LENGTH_LONG).show();
                             Intent goto_signup = new Intent(MainActivity.this,sign_up.class);
                             startActivity(goto_signup);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-        log_out.setOnClickListener(new View.OnClickListener() {
+    /*    log_out.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(go_to_login);
                 }
             }
-        });
+        });*/
 
 
     }
