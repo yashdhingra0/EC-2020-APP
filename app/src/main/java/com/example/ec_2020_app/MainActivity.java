@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       //  log_out = findViewById(R.id.log_out);
-
+            getSupportActionBar().hide();
      //   show_name = findViewById(R.id.fetch_name);
      //   show_college = findViewById(R.id.fetch_college);
     //    show_email = findViewById(R.id.fetch_email);
@@ -72,36 +72,42 @@ public class MainActivity extends AppCompatActivity {
 
         final String mmobile = getIntent().getStringExtra("mmobile");
 
+        String datta = "rtr";
 
-        Toast.makeText(this, mmobile, Toast.LENGTH_SHORT).show();
-
-        reff= FirebaseDatabase.getInstance().getReference().child("users").child(mmobile);
-
-
-
-            reff.addValueEventListener(new ValueEventListener()
+            if (mmobile.isEmpty())
             {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
-                {
-                        if(dataSnapshot.exists()) {
-                            String temp_name = dataSnapshot.child("full_name").getValue().toString();
-                            String temp_college = dataSnapshot.child("college").getValue().toString();
-                            String temp_email = dataSnapshot.child("email").getValue().toString();
-                            String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
+                Log.e("TAG","alpha");
+                Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
+                Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
+                startActivity(goto_signup);
+            }
 
-                           // show_name.setText(temp_name);
-                          //  show_college.setText(temp_college);
-                          //  show_email.setText(temp_email);
-                          //  show_mobile.setText(temp_mobile);
-                        }
-                        else
-                        {
-                           // show_email.setText("You should first sigu up and then come");
-                            Toast.makeText(MainActivity.this, "You should first sigu up and then come", Toast.LENGTH_LONG).show();
-                            Intent goto_signup = new Intent(MainActivity.this,sign_up.class);
-                            startActivity(goto_signup);
-                        }
+            if(!mmobile.equals(datta))
+        {
+
+            Log.e("TAG","betA");
+            Toast.makeText(this, mmobile, Toast.LENGTH_LONG).show();
+
+          reff = FirebaseDatabase.getInstance().getReference().child("users").child(mmobile);
+            reff.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String temp_name = dataSnapshot.child("full_name").getValue().toString();
+                        String temp_college = dataSnapshot.child("college").getValue().toString();
+                        String temp_email = dataSnapshot.child("email").getValue().toString();
+                        String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
+
+                        // show_name.setText(temp_name);
+                        //  show_college.setText(temp_college);
+                        //  show_email.setText(temp_email);
+                        //  show_mobile.setText(temp_mobile);
+                    } else {
+                        // show_email.setText("You should first sigu up and then come");
+                        Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
+                        Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
+                        startActivity(goto_signup);
+                    }
                 }
 
                 @Override
@@ -110,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             });
+
+        }
 
 
     /*    log_out.setOnClickListener(new View.OnClickListener() {

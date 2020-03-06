@@ -12,5 +12,6 @@
     <string name="enter_otp">Enter OTP</string>
     <string name="sign_out">Log Out</string>
     <string name="please_wait">Wait</string>
+    <string name="sign_Guest">Sign In As  a Guest</string>
 
 </resources>

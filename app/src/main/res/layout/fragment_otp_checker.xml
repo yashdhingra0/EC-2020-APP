@@ -50,6 +50,7 @@
                 android:background="@drawable/otp_edit_text_background"
                 android:inputType="number"
                 android:maxLength="6"
+
                 android:nextFocusDown="@+id/et_otp_dig_2"
                 android:padding="4dp"
 

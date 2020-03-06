@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,14 +32,17 @@ import java.util.zip.Inflater;
 
 public class login extends AppCompatActivity {
 
+
     Button loggin_button;
     private static final String TAG = "loginn";
-    TextView oppen_signup;
+    TextView oppen_signup,skip_sign_in;
     FirebaseAuth firebaseAuth;
     String verify_Id;
     PhoneAuthProvider.ForceResendingToken force_token;
 
-    EditText numberToLogin;
+
+
+        EditText numberToLogin;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
@@ -46,10 +50,16 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+
         final Intent i = new Intent(this, sign_up.class);
+
+        final Intent skip = new Intent(this,MainActivity.class);
+
         firebaseAuth = firebaseAuth.getInstance();
         oppen_signup = findViewById(R.id.open_signup);
         loggin_button = findViewById(R.id.login_button);
+        skip_sign_in = findViewById(R.id.skip_signin);
+
 
         loggin_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +67,26 @@ public class login extends AppCompatActivity {
                 registerMobile();
             }
         });
+
         numberToLogin = findViewById(R.id.num_text);
         oppen_signup.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 startActivity(i);
             }
         });
 
+        skip_sign_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                String datta = "rtr";
+                skip.putExtra("mmobile",datta);
+
+                startActivity(skip);
+            }
+        });
 
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -105,6 +127,7 @@ public class login extends AppCompatActivity {
             }
         };
 
+
     }
     EditText otp_text;
     private void otpDialog()
@@ -113,12 +136,21 @@ public class login extends AppCompatActivity {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_otp_checker,null);
         otp_text = view.findViewById(R.id.et_otp_dig_1);
+
         builder.setCancelable(false);
-        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                if(otp_text.getText().toString().equals(""))
+                {
+                    Toast.makeText(login.this, "Invalid otp", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verify_Id, otp_text.getText().toString().trim());
+
                 signInWithPhoneAuthCredential(credential);
 
             }
@@ -132,6 +164,8 @@ public class login extends AppCompatActivity {
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -149,7 +183,7 @@ public class login extends AppCompatActivity {
 
 
                         } else {
-                            Toast.makeText(login.this,"failed",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(login.this,"wrong otp",Toast.LENGTH_SHORT).show();
 
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
