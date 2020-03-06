@@ -8,4 +8,6 @@
     <color name="white">#F0F5F7</color>
     <color name="black">#0C0C0C</color>
     <color name="my_orange">#F5C073</color>
+    <color name="inactive">#8A8C91</color>
+    <color name="active">#FFFFFF</color>
 </resources>
