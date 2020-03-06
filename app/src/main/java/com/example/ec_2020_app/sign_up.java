@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 public class sign_up extends AppCompatActivity {
 
     FirebaseAuth fauth;
-    TextView loggin_page;
+    TextView loggin_page,skip_signup;
     Button signup_click;
     private static final String TAG = "siggnup";
     TextInputEditText t_name, t_college, t_email, t_mobile;
@@ -59,9 +60,21 @@ public class sign_up extends AppCompatActivity {
         getSupportActionBar().hide();
         mDatabase = FirebaseDatabase.getInstance();
         final Intent i = new Intent(this, login.class);
+        final Intent skipp = new Intent(this, MainActivity.class);
+
         signupRef = mDatabase.getReference("users");
 
         loggin_page = findViewById(R.id.open_login);
+        skip_signup = findViewById(R.id.skip_signup);
+
+            skip_signup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String datta = "rtr";
+                    skipp.putExtra("mmobile",datta);
+                    startActivity(skipp);
+                }
+            });
 
         loggin_page.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +159,9 @@ public class sign_up extends AppCompatActivity {
         };
 
     }
+
+
+
     private void saveDataInFirebase(String uid)
     {
         String name = t_name.getText().toString().trim();
@@ -155,9 +171,11 @@ public class sign_up extends AppCompatActivity {
 
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(mobile) || TextUtils.isEmpty(email) || TextUtils.isEmpty(college))
         {
+
             Toast.makeText(sign_up.this,"empty fields required",Toast.LENGTH_SHORT).show();
             return;
         }
+
 
         User user = new User(name,mobile,email,college);
        // String uid = signupRef.push().getKey();
@@ -175,9 +193,15 @@ public class sign_up extends AppCompatActivity {
         View view = getLayoutInflater().inflate(R.layout.fragment_otp_checker,null);
         otp_text = view.findViewById(R.id.et_otp_dig_1);
         builder.setCancelable(false);
-        builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                if(otp_text.getText().toString().equals(""))
+                {
+                    Toast.makeText(sign_up.this, "Invalid otp", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
 
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verify_Id, otp_text.getText().toString().trim());
                 signInWithPhoneAuthCredential(credential);
