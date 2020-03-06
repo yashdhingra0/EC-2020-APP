@@ -94,17 +94,17 @@ public class sign_up extends AppCompatActivity {
         signupRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
+
                 String value = dataSnapshot.toString();
-               // String value = dataSnapshot.getValue(String.class);
+
                 Log.d(TAG, "sign up value read  is: " + value);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
+
                 Log.w(TAG, "Failed to read value.", error.toException());
+
             }
         });
 
@@ -160,21 +160,16 @@ public class sign_up extends AppCompatActivity {
 
     }
 
-
+    String name,email,college;
 
     private void saveDataInFirebase(String uid)
     {
-        String name = t_name.getText().toString().trim();
-        String email = t_email.getText().toString().trim();
-        String college = t_college.getText().toString().trim();
-        mobile = t_mobile.getText().toString().trim();
+         name = t_name.getText().toString().trim();
+         email = t_email.getText().toString().trim();
+         college = t_college.getText().toString().trim();
+         mobile = t_mobile.getText().toString().trim();
 
-        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(mobile) || TextUtils.isEmpty(email) || TextUtils.isEmpty(college))
-        {
 
-            Toast.makeText(sign_up.this,"empty fields required",Toast.LENGTH_SHORT).show();
-            return;
-        }
 
 
         User user = new User(name,mobile,email,college);
@@ -251,10 +246,32 @@ public class sign_up extends AppCompatActivity {
                 });
     }
 String mob_no;
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
     private void registerMobile()
     {
         mob_no="+91"+t_mobile.getText();
         Log.e("registerMobile","mob_no length  :"+mob_no.length()+ " mob no: "+mob_no);
+
+        if(TextUtils.isEmpty(t_name.getText().toString()) || TextUtils.isEmpty(t_mobile.getText().toString()) || TextUtils.isEmpty(t_email.getText().toString()) || TextUtils.isEmpty(t_college.getText().toString()))
+        {
+
+            Toast.makeText(sign_up.this,"empty fields required",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if(!isValidEmail(t_email.getText().toString()))
+            {
+                Toast.makeText(sign_up.this,"Enter valid email",Toast.LENGTH_SHORT).show();
+                return;
+            }
         if(mob_no.length()!=13)
         {
             Toast.makeText(this,"Enter a valid 10 digit number",Toast.LENGTH_SHORT).show();
