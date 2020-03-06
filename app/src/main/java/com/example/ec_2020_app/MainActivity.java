@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView2.setAdapter(new EventsAdapter2());
 
-/*
+
         final String mmobile = getIntent().getStringExtra("mmobile");
 
 
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Sorry try again", Toast.LENGTH_SHORT).show();
                 }
 
-            });*/
+            });
 
 
     /*    log_out.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 handler.post(runnable);
             }
-        },0,2000);
+        },0,1000);
 
     }
 
