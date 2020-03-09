@@ -4,6 +4,7 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(savedInstanceState==null)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame,new homepage()).commit();
+        }
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottom_nav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
       //  log_out = findViewById(R.id.log_out);
             getSupportActionBar().hide();
      //   show_name = findViewById(R.id.fetch_name);
@@ -133,10 +142,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });*/
-
-
     }
-
+private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener=
+        new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment fragment=null;
+                switch(item.getItemId())
+                {
+                    case R.id.home_icon:
+                        fragment=new homepage();
+                        break;
+                    case R.id.tickets_icon:
+                        fragment=new tickets();
+                        break;
+                    case R.id.schedule_icon:
+                        fragment=new schedule();
+                        break;
+                    case R.id.developers_icon:
+                        fragment=new developers();
+                        break;
+                }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragment).commit();
+                return true;
+            }
+        };
     private void galleryViewPager() {
 
         linearLayout = findViewById(R.id.dotsIndicator);
