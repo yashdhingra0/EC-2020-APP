@@ -9,11 +9,6 @@
         <item name="android:textColorHint">@color/very_blue</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="signup_style" parent="@style/TextAppearance.AppCompat">
         <item name="android:textColor">@color/very_blue</item>
     </style>
@@ -25,6 +20,12 @@
     <style name="CounterOverFlow" parent="TextAppearance.Design.Counter.Overflow">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/my_orange</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

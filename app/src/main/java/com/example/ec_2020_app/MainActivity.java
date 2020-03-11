@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.example.ec_2020_app.adapter.EventsAdapter;
 import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
+import com.example.ec_2020_app.story.stories_main;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,6 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -71,9 +74,35 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recycler1);
         RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
+        final Context ctx=this;
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView.setAdapter(new EventsAdapter());
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(ctx, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        final ArrayList<ArrayList<String>> ll=new ArrayList<> ();
+                        ArrayList<String> pp=new ArrayList<>();
+                        pp.add("https://cdn.pixabay.com/photo/2020/03/07/05/18/coffee-4908764_960_720.jpg");
+                        pp.add("https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_960_720.jpg");
+                        ll.add(pp);
+                        ArrayList<String> bb=new ArrayList<>(pp);
+                        bb.add("https://cdn.pixabay.com/photo/2019/09/28/23/55/girl-4512051_960_720.jpg");
+                        bb.add("https://cdn.pixabay.com/photo/2020/03/05/20/49/flowers-4905460_960_720.jpg");
+                        ll.add(bb);
+                        ArrayList<String> cc=new ArrayList<>(pp);
+                        cc.add("https://cdn.pixabay.com/photo/2020/03/06/18/21/native-american-4907816_960_720.png");
+                        ll.add(cc);
+                        Intent it=new Intent(ctx, stories_main.class);
+                        it.putExtra("url",ll);
+                        it.putExtra("index",0);
+                        startActivityForResult(it,0);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                    }
+                })
+        );
 
         recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView2.setAdapter(new EventsAdapter2());
