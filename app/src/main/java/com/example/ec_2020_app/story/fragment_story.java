@@ -24,6 +24,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.ec_2020_app.R;
+import com.example.ec_2020_app.SaveSharedPreference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class fragment_story extends Fragment {
     int count;
     int pageId;
     static ArrayList<String> links;
+    static ArrayList<String> timelist;
     static int progress=0;
     static int currentindex;
     static ObjectAnimator pillanim[];
@@ -54,7 +56,7 @@ public class fragment_story extends Fragment {
 
 
 
-    public static fragment_story newInstance(int maxId, int pageId, int currentIndex, ArrayList<String> links,String from,String time) {
+    public static fragment_story newInstance(int maxId, int pageId, int currentIndex, ArrayList<String> links,String from,ArrayList<String> time) {
         fragment_story fragmentFirst = new fragment_story();
         Bundle args = new Bundle();
         args.putInt("currentIndex", currentIndex);
@@ -62,7 +64,7 @@ public class fragment_story extends Fragment {
         args.putStringArrayList("links",links);
         args.putInt("maxId",maxId);
         args.putString("from",from);
-        args.putString("time",time);
+        args.putStringArrayList("time",time);
         fragmentFirst.setArguments(args);
 
         return fragmentFirst;
@@ -108,7 +110,7 @@ public class fragment_story extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);setUserVisibleHint(false);
+        super.onCreate(savedInstanceState);
     }
 
 
@@ -140,6 +142,7 @@ public class fragment_story extends Fragment {
         View touch=view.findViewById(R.id.touch);
         currentindex=getArguments().getInt("currentIndex");
         links=getArguments().getStringArrayList("links");
+        timelist=getArguments().getStringArrayList("time");
         pageId=getArguments().getInt("pageId");
         maxId=getArguments().getInt("maxId");
         //links= getIntent().getStringArrayListExtra("url");
@@ -148,7 +151,6 @@ public class fragment_story extends Fragment {
         from=view.findViewById(R.id.from);
         time=view.findViewById(R.id.time);
         from.setText(getArguments().getString("from"));
-        time.setText(getArguments().getString("time"));
         progressBar=view.findViewById(R.id.progress_bar_2);
         image=view.findViewById(R.id.image_view_2);
         image.setImageResource(R.drawable.loading);
@@ -180,6 +182,10 @@ public class fragment_story extends Fragment {
                 .placeholder(R.drawable.loading)
                 .into(image);
         pillanim[currentindex].start();
+        time.setText(timelist.get(currentindex));
+        String aa= SaveSharedPreference.getVisitedlinks(ctx);
+        aa=aa+" "+links.get(currentindex);
+        SaveSharedPreference.setVisitedlinks(ctx,aa);
         Log.d("Pic","Piccasso");
     }
 

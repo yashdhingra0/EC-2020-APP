@@ -23,8 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ec_2020_app.adapter.EventsAdapter;
 import com.example.ec_2020_app.adapter.EventsAdapter2;
+import com.example.ec_2020_app.adapter.RoundStoryAdapter;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.example.ec_2020_app.story.stories_main;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,18 +40,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     Button log_out;
     TextView show_name,show_mobile,show_college,show_email;
     DatabaseReference reff;
     Timer timer;
+    Context ctx;
     int currentPosition=0;
     ViewPager viewPager;
     LinearLayout linearLayout;
+    RecyclerView stories;
+
+    static ArrayList<ArrayList<String>> sortedAllLinks;//Get value of all links from database
+    static ArrayList<String> sortedFrom;//Get value from database
+    static ArrayList<ArrayList<String>> sortedTime;//Format - "dd-mm-yyyy hh:ss"//24hrs system
+    static ArrayList<Boolean> sortedState;//True if there is new story from a specific club
+    static int sortedPosition[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,31 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
         galleryViewPager();
 
-        RecyclerView recyclerView = findViewById(R.id.recycler1);
+        //RecyclerView recyclerView = findViewById(R.id.recycler1);
+        stories=findViewById(R.id.recycler1);
+        stories.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
-        final Context ctx=this;
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setAdapter(new EventsAdapter());
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(ctx, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+        ctx=this;
+        storyProcessor();
+        stories.setAdapter(new RoundStoryAdapter(this,sortedFrom,sortedState));
+        stories.addOnItemTouchListener(
+                new RecyclerItemClickListener(ctx, stories ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        final ArrayList<ArrayList<String>> ll=new ArrayList<> ();
-                        ArrayList<String> pp=new ArrayList<>();
-                        pp.add("https://cdn.pixabay.com/photo/2020/03/07/05/18/coffee-4908764_960_720.jpg");
-                        pp.add("https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_960_720.jpg");
-                        ll.add(pp);
-                        ArrayList<String> bb=new ArrayList<>(pp);
-                        bb.add("https://cdn.pixabay.com/photo/2019/09/28/23/55/girl-4512051_960_720.jpg");
-                        bb.add("https://cdn.pixabay.com/photo/2020/03/05/20/49/flowers-4905460_960_720.jpg");
-                        ll.add(bb);
-                        ArrayList<String> cc=new ArrayList<>(pp);
-                        cc.add("https://cdn.pixabay.com/photo/2020/03/06/18/21/native-american-4907816_960_720.png");
-                        ll.add(cc);
-                        Intent it=new Intent(ctx, stories_main.class);
-                        it.putExtra("url",ll);
-                        it.putExtra("index",0);
-                        startActivityForResult(it,0);
+                        storyOnClick(position);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
@@ -271,4 +267,132 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         }
     }
 
+    private void storyProcessor(){
+        ArrayList<String> seenlinks=sharedlinkstolist();//Contains all seen story links, has to be stored as SharedPreferences
+        StringTokenizer str=new StringTokenizer("");
+        ArrayList<ArrayList<String>> alllinks=new ArrayList<>();//Get value of all links from database
+        ArrayList<String> from=new ArrayList<>();//Get value from database
+        ArrayList<ArrayList<String>> time=new ArrayList<>();//Format - "dd-mm-yyyy hh:ss"//24hrs system
+        ArrayList<Boolean> state=new ArrayList<>();//True if there is new story from a specific club
+        ArrayList<Integer> position=new ArrayList<>();//Stores position from where stories have to be started
+
+        //SampleData
+        from.add("Manan");
+        from.add("Ananya");
+        from.add("IEEE");
+
+        ArrayList<String> pp=new ArrayList<>();
+        pp.add("https://cdn.pixabay.com/photo/2020/03/07/05/18/coffee-4908764_960_720.jpg");
+        pp.add("https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_960_720.jpg");
+        alllinks.add(pp);
+        ArrayList<String> bb=new ArrayList<>();
+        bb.add("https://images.pexels.com/photos/1366630/pexels-photo-1366630.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+        bb.add("https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+        bb.add("https://cdn.pixabay.com/photo/2019/09/28/23/55/girl-4512051_960_720.jpg");
+        bb.add("https://cdn.pixabay.com/photo/2020/03/05/20/49/flowers-4905460_960_720.jpg");
+        alllinks.add(bb);
+        ArrayList<String> cc=new ArrayList<>();
+        cc.add("https://cdn.pixabay.com/photo/2020/03/06/18/21/native-american-4907816_960_720.png");
+        cc.add("https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+        cc.add("https://images.pexels.com/photos/775199/pexels-photo-775199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+        alllinks.add(cc);
+
+        pp=new ArrayList<>();
+        pp.add("Yesterday, 11:00 p.m.");
+        pp.add("Today, 09:00 a.m.");
+        time.add(pp);
+        bb=new ArrayList<>(pp);
+        bb.add("Today, 11:00 a.m.");
+        bb.add("Today, 01:00 p.m. ");
+        time.add(bb);
+        cc=new ArrayList<>(pp);
+        cc.add("Today 10:00 a.m.");
+        time.add(cc);
+
+        //Sample Data Ends
+
+
+        for(int i=0;i<alllinks.size();i++){
+            boolean _new=false;
+            for (int j=0;j<alllinks.get(i).size();j++){
+                String link=alllinks.get(i).get(j);
+                boolean check=!(seenlinks.contains(link));
+                if(!_new&&check)position.add(j);
+                if(check)_new=true;
+            }
+            if(!_new)position.add(0);
+            state.add(_new);
+        }
+
+        sortedAllLinks=new ArrayList<>();//Get value of all links from database
+        sortedFrom=new ArrayList<>();//Get value from database
+        sortedTime=new ArrayList<>();//Format - "dd-mm-yyyy hh:ss"//24hrs system
+        sortedState=new ArrayList<>();//True if there is new story from a specific club
+        sortedPosition=new int[alllinks.size()];//Stores position from where stories have to be started
+        int count=0;
+
+        for(int i=0;i<alllinks.size();i++){
+            if(state.get(i)){
+                sortedAllLinks.add(alllinks.get(i));
+                sortedFrom.add(from.get(i));
+                sortedTime.add(time.get(i));
+                sortedState.add(state.get(i));
+                sortedPosition[count]=position.get(i);
+                count++;
+            }
+        }
+        for(int i=0;i<alllinks.size();i++){
+            if(!state.get(i)){
+                sortedAllLinks.add(alllinks.get(i));
+                sortedFrom.add(from.get(i));
+                sortedTime.add(time.get(i));
+                sortedState.add(state.get(i));
+                sortedPosition[count]=position.get(i);
+                count++;
+            }
+        }
+    }
+
+    private void storyOnClick(int position){
+        Intent it=new Intent(ctx, stories_main.class);
+        it.putExtra("url",sortedAllLinks);
+        it.putExtra("allIndex",sortedPosition);
+        it.putExtra("index",position);
+        it.putExtra("from",sortedFrom);
+        it.putExtra("time",sortedTime);
+
+        startActivityForResult(it,0);
+    }
+
+    private ArrayList<String> sharedlinkstolist(){
+        ArrayList<String> visitedlinks=new ArrayList<>();
+        String newsaved="";
+        StringTokenizer str=new StringTokenizer(SaveSharedPreference.getVisitedlinks(ctx).trim());
+        for(int i=0;str.hasMoreTokens();i++){
+            String a=str.nextToken();
+            if(!visitedlinks.contains(a)) {
+                visitedlinks.add(a);
+                newsaved=newsaved+a+" ";
+            }
+        }
+        SaveSharedPreference.setVisitedlinks(ctx,newsaved);
+        return visitedlinks;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        storyProcessor();
+        stories.setAdapter(new RoundStoryAdapter(this,sortedFrom,sortedState));
+        stories.addOnItemTouchListener(
+                new RecyclerItemClickListener(ctx, stories ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        storyOnClick(position);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                    }
+                })
+        );
+    }
 }
