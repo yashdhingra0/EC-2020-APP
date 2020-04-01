@@ -191,10 +191,6 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
-                    case R.id.tickets_icon:
-                    fragment=new tickets();
-
-                        break;
                     case R.id.nav_icon:
                         fragment=new nav_draw();
                         break;

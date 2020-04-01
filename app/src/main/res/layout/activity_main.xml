@@ -69,6 +69,7 @@ tools:openDrawer="start">
     android:background="@color/active"
     app:itemIconTint="@color/black"
     android:id="@+id/bottom_nav"
+    app:labelVisibilityMode="selected"
     android:layout_alignParentBottom="true"
 
     />

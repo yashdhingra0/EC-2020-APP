@@ -33,8 +33,10 @@ public class nav_draw extends BottomSheetDialogFragment {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+
                     case R.id.nav_item_one:
-                        Toast.makeText(getActivity(), "ab", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getActivity(), "ab", Toast.LENGTH_SHORT).show();
+
                         break;
                     case R.id.nav_item_two:
                         Intent i = new Intent(getActivity(), about.class);

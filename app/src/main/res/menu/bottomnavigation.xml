@@ -5,11 +5,7 @@
         android:title="Home"
         android:icon="@drawable/home_icon"
         />
-    <item
-    android:id="@+id/tickets_icon"
-    android:title="Tickets"
-    android:icon="@drawable/tickets"
-    />
+
 
     <item
         android:id="@+id/developers_icon"
