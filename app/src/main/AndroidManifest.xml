@@ -10,6 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".sign_up"></activity>
+        <activity android:name=".about"></activity>
+        <activity android:name=".nav_draw"></activity>
         <activity android:name=".login" />
         <activity android:name=".Splash_screen">
             <intent-filter>

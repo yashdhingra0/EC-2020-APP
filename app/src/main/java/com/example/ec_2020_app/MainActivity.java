@@ -2,13 +2,19 @@ package com.example.ec_2020_app;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +34,7 @@ import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,8 +47,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String FRAGMENT_HOME ="FRAGMENT_HOME" ;
+    private static final String FRAGMENT_OTHER = "FRAGMENT_OTHER";
     Button log_out;
     TextView show_name,show_mobile,show_college,show_email;
     DatabaseReference reff;
@@ -49,12 +60,38 @@ public class MainActivity extends AppCompatActivity {
     int currentPosition=0;
     ViewPager viewPager;
     LinearLayout linearLayout;
+    DrawerLayout mdrawerLayout;
+    ActionBarDrawerToggle mtoggle;
+    NavigationView nag;
+    Toolbar toolbar;
+
+    /* private void setupDrawerContent(NavigationView navigationView) {
+         navigationView.setNavigationItemSelectedListener(this);
+     }*/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (mtoggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+  /*  public void onBackPressed() {
+        if (mdrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mdrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(savedInstanceState==null)
+
+       if(savedInstanceState==null)
         {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame,new homepage()).commit();
         }
@@ -66,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
      //   show_college = findViewById(R.id.fetch_college);
     //    show_email = findViewById(R.id.fetch_email);
      //   show_mobile = findViewById(R.id.fetch_mobile);
+
 
         galleryViewPager();
 
@@ -147,17 +185,18 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment=null;
+             Fragment fragment=null;
                 switch(item.getItemId())
                 {
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
                     case R.id.tickets_icon:
-                        fragment=new tickets();
+                    fragment=new tickets();
+
                         break;
-                    case R.id.schedule_icon:
-                        fragment=new schedule();
+                    case R.id.nav_icon:
+                        fragment=new nav_draw();
                         break;
                     case R.id.developers_icon:
                         fragment=new developers();
@@ -167,6 +206,8 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                 return true;
             }
         };
+
+
     private void galleryViewPager() {
 
         linearLayout = findViewById(R.id.dotsIndicator);

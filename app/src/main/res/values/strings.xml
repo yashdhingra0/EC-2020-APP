@@ -13,5 +13,13 @@
     <string name="sign_out">Log Out</string>
     <string name="please_wait">Wait</string>
     <string name="sign_Guest">Sign In As  a Guest</string>
-
+    <string name="aboutEc">Elements Culmyca, the annual inter college cultech festival of YMCAUST has grown on to become one of the most popular college festivals of NCR. With 1000+ participating students, 40+ participating colleges and an expected footfall of over 10000, ELEMENTS CULMYCA 18 guarantees to be a sure hit The upcoming \'Kalakaars\' painting the entire college in the colours of their vivacity, the gaming freaks, the coding addicts. They are all a part of the same institution, busy doing what they do best.</string>
+    <string name="home">Home</string>
+    <string name="about">About</string>
+    <string name="tickets">Tickets</string>
+    <string name="share">Share</string>
+    <string name="logout">Logout</string>
+    <string name="credits">Credits</string>
+    <string name="open">open</string>
+    <string name="close"> close</string>
 </resources>
