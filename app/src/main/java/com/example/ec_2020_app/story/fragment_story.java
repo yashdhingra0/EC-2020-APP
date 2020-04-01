@@ -3,7 +3,11 @@ package com.example.ec_2020_app.story;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -27,6 +32,8 @@ import com.example.ec_2020_app.R;
 import com.example.ec_2020_app.SaveSharedPreference;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 
@@ -115,6 +122,7 @@ public class fragment_story extends Fragment {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -175,8 +183,24 @@ public class fragment_story extends Fragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void start(){
         //imageLoader.displayImage(links.get(currentindex),image);
+        String t=(links.get(currentindex).substring(22));
+        if(links.get(currentindex).substring(0,8).equals("file:///")){
+            AssetManager assetManager = ctx.getAssets();
+            try (
+                    //declaration of inputStream in try-with-resources statement will automatically close inputStream
+                    // ==> no explicit inputStream.close() in additional block finally {...} necessary
+                    InputStream inputStream = assetManager.open(links.get(currentindex).substring(22));
+            ) {
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                image.setImageBitmap(bitmap);
+            } catch (IOException ex) {
+                //Toast.makeText(ctx,"path - "+t,Toast.LENGTH_SHORT).show();
+            }
+        }
+        else
         Picasso.with(ctx)
                 .load(links.get(currentindex))
                 .placeholder(R.drawable.loading)
@@ -188,6 +212,8 @@ public class fragment_story extends Fragment {
         SaveSharedPreference.setVisitedlinks(ctx,aa);
         Log.d("Pic","Piccasso");
     }
+
+
 
     public static void pause(){
         pillanim[currentindex].cancel();

@@ -39,8 +39,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -280,34 +283,113 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         from.add("Manan");
         from.add("Ananya");
         from.add("IEEE");
+        from.add("Microbird");
+        from.add("Nirmayam");
+        from.add("Natraja");
+        from.add("TMR");
+        from.add("Vividha");
+
 
         ArrayList<String> pp=new ArrayList<>();
-        pp.add("https://cdn.pixabay.com/photo/2020/03/07/05/18/coffee-4908764_960_720.jpg");
-        pp.add("https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_960_720.jpg");
+//        pp.add("https://cdn.pixabay.com/photo/2020/03/07/05/18/coffee-4908764_960_720.jpg");
+//        pp.add("https://cdn.pixabay.com/photo/2020/03/04/05/57/key-4900643_960_720.jpg");
+        pp.add("file:///android_asset/club_images/man1-min.jpg");
+        pp.add("file:///android_asset/club_images/man2-min.jpg");
+        pp.add("file:///android_asset/club_images/man3-min.jpg");
         alllinks.add(pp);
         ArrayList<String> bb=new ArrayList<>();
-        bb.add("https://images.pexels.com/photos/1366630/pexels-photo-1366630.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
-        bb.add("https://images.pexels.com/photos/1624496/pexels-photo-1624496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-        bb.add("https://cdn.pixabay.com/photo/2019/09/28/23/55/girl-4512051_960_720.jpg");
-        bb.add("https://cdn.pixabay.com/photo/2020/03/05/20/49/flowers-4905460_960_720.jpg");
+        bb.add("file:///android_asset/club_images/an1-min.png");
+        bb.add("file:///android_asset/club_images/an2-min.png");
+        bb.add("file:///android_asset/club_images/an3-min.jpg");
+        bb.add("file:///android_asset/club_images/an4-min.jpg");
+        bb.add("file:///android_asset/club_images/an5-min.jpg");
         alllinks.add(bb);
         ArrayList<String> cc=new ArrayList<>();
-        cc.add("https://cdn.pixabay.com/photo/2020/03/06/18/21/native-american-4907816_960_720.png");
-        cc.add("https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-        cc.add("https://images.pexels.com/photos/775199/pexels-photo-775199.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+        cc.add("file:///android_asset/club_images/ieee1-min.jpeg");
+        cc.add("file:///android_asset/club_images/ieee2-min.jpeg");
+        cc.add("file:///android_asset/club_images/ieee3-min.jpg");
+        cc.add("file:///android_asset/club_images/ieee4-min.jpg");
+        cc.add("file:///android_asset/club_images/ieee5-min.jpg");
+        cc.add("file:///android_asset/club_images/ieee6-min.jpg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/mb1-min.jpg");
+        cc.add("file:///android_asset/club_images/mb2-min.jpg");
+        cc.add("file:///android_asset/club_images/mb3-min.jpg");
+        cc.add("file:///android_asset/club_images/mb4-min.jpg");
+        cc.add("file:///android_asset/club_images/mb5-min.jpg");
+        cc.add("file:///android_asset/club_images/mb6-min.jpg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/nir1-min.jpg");
+        cc.add("file:///android_asset/club_images/nir2-min.jpg");
+        cc.add("file:///android_asset/club_images/nir3-min.JPG");
+        cc.add("file:///android_asset/club_images/nir4-min.JPG");
+        cc.add("file:///android_asset/club_images/nir5-min.JPG");
+        cc.add("file:///android_asset/club_images/nir6-min.jpg");
+        cc.add("file:///android_asset/club_images/nir7-min.jpg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/nt1-min.jpg");
+        cc.add("file:///android_asset/club_images/nt2-min.jpg");
+        cc.add("file:///android_asset/club_images/nt3-min.jpg");
+        cc.add("file:///android_asset/club_images/nt4-min.jpg");
+        cc.add("file:///android_asset/club_images/nt5-min.jpeg");
+        cc.add("file:///android_asset/club_images/nt6-min.jpeg");
+        cc.add("file:///android_asset/club_images/nt7-min.jpeg");
+        cc.add("file:///android_asset/club_images/nt8-min.jpeg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/tmr1-min.jpg");
+        cc.add("file:///android_asset/club_images/tmr2-min.jpg");
+        cc.add("file:///android_asset/club_images/tmr3-min.jpg");
+        cc.add("file:///android_asset/club_images/tmr4-min.jpg");
+        cc.add("file:///android_asset/club_images/tmr5-min.jpg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/viv1-min.jpeg");
+        cc.add("file:///android_asset/club_images/viv2-min.jpeg");
+        cc.add("file:///android_asset/club_images/viv3-min.jpeg");
+        cc.add("file:///android_asset/club_images/viv4-min.jpeg");
+        cc.add("file:///android_asset/club_images/viv5-min.jpeg");
         alllinks.add(cc);
 
+        String timearr[]=new String[8];
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        for(int i=0;i<8;i++){
+            int hr=Integer.parseInt(currentTime.substring(0,2));
+            if((hr-18+(2*i))<0)
+                if (((hr - 18 + (2 * i)) + 24)<12)
+                    timearr[i] = "Yesterday, " + ((hr - 18 + (2 * i)) + 24)+":00 a.m.";
+                else
+                    timearr[i] = "Yesterday, " + ((hr - 18 + (2 * i)) + 24 - 12)+":00 p.m.";
+            else
+                if (((hr - 18 + (2 * i)))<12)
+                    timearr[i] = "Today, " + ((hr - 18 + (2 * i)) )+":00 a.m.";
+                else
+                    timearr[i] = "Today, " + ((hr - 18 + (2 * i)) -12)+":00 p.m.";
+        }
+
+
         pp=new ArrayList<>();
-        pp.add("Yesterday, 11:00 p.m.");
-        pp.add("Today, 09:00 a.m.");
+        for(int i=0;i<3;i++)
+            pp.add(timearr[i]);
         time.add(pp);
-        bb=new ArrayList<>(pp);
-        bb.add("Today, 11:00 a.m.");
-        bb.add("Today, 01:00 p.m. ");
-        time.add(bb);
-        cc=new ArrayList<>(pp);
-        cc.add("Today 10:00 a.m.");
-        time.add(cc);
+        for(int i=3;i<5;i++)
+            pp.add(timearr[i]);
+        time.add(pp);
+        pp.add(timearr[5]);
+        time.add(pp);
+        time.add(pp);
+        pp.add(timearr[6]);
+        time.add(pp);
+        pp.add(timearr[7]);
+        time.add(pp);
+        pp=new ArrayList<>();
+        for(int i=0;i<5;i++)
+            pp.add(timearr[i]);
+        time.add(pp);
+        time.add(pp);
 
         //Sample Data Ends
 
