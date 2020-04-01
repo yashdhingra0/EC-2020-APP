@@ -73,7 +73,7 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(i);
+                startActivityForResult(i,0);
             }
         });
 
