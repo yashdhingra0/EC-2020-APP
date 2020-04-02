@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity{
         //RecyclerView recyclerView = findViewById(R.id.recycler1);
         stories=findViewById(R.id.recycler1);
         stories.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
+        RecyclerView recyclerView2 = findViewById(R.id.recycler2);
         ctx=this;
         storyProcessor();
         stories.setAdapter(new RoundStoryAdapter(this,sortedFrom,sortedState));
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity{
         );
 
         recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        recyclerView2.setAdapter(new EventsAdapter2());
+        recyclerView2.setAdapter(new EventsAdapter2(ctx));
 
 
         final String mmobile = getIntent().getStringExtra("mmobile");
@@ -174,6 +174,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
+
                     case R.id.nav_icon:
                         fragment=new nav_draw();
                         break;

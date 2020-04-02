@@ -12,6 +12,7 @@
     <style name="signup_style" parent="@style/TextAppearance.AppCompat">
         <item name="android:textColor">@color/very_blue</item>
     </style>
+
     <style name="CounterText" parent="TextAppearance.Design.Counter">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
@@ -27,5 +28,17 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ExpandedToolBar">
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/overpass_black</item>
+    </style>
+
 
 </resources>
