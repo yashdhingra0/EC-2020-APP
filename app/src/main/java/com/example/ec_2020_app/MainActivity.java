@@ -181,9 +181,10 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
 
                     case R.id.developers_icon:
                         fragment=new developers();
+                       // startActivity(new Intent(MainActivity.this,developers.class));
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragment).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.frame,fragment).commit();
                 return true;
             }
         };
