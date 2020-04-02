@@ -32,7 +32,7 @@
         android:textColor="#ffff"
         android:textStyle="bold|italic"
         android:fontFamily="@font/overpass_black"
-        android:textSize="26sp"/>
+        android:textSize="28sp"/>
 
 </RelativeLayout>
 

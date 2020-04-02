@@ -47,7 +47,7 @@ public class EventsAdapter2 extends RecyclerView.Adapter<EventsAdapter2.EventVie
 
     @Override
     public int getItemCount() {
-        return 10;
+        return Utils.clubName.length;
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
