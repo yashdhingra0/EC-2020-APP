@@ -242,6 +242,7 @@ public class fragment_story extends Fragment {
             @Override
             public void onAnimationStart(Animator animator) { }
 
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onAnimationEnd(Animator animator) {
 
@@ -262,6 +263,7 @@ public class fragment_story extends Fragment {
         return  animation;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     void Gonext(){
         if(currentindex<count){
             start();
@@ -373,6 +375,7 @@ public class fragment_story extends Fragment {
         stories_main.goNextFrame(currentindex);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void goLeft(){
         pillanim[currentindex].cancel();
         pills[currentindex].setProgress(0);
@@ -388,6 +391,7 @@ public class fragment_story extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void goRight(){
         pillanim[currentindex].cancel();
         pills[currentindex].setProgress(100);
