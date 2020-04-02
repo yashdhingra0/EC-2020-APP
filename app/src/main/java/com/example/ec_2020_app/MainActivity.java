@@ -181,12 +181,6 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
-                    case R.id.tickets_icon:
-                        fragment=new tickets();
-                        break;
-                    case R.id.schedule_icon:
-                        fragment=new schedule();
-                        break;
                     case R.id.developers_icon:
                         fragment=new developers();
                         break;
