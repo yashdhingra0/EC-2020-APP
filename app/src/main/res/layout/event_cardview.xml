@@ -67,7 +67,7 @@
                 android:padding="10dp"
                 android:text="Coding Relay is a coding contest in which a team or individual could participate.Paticipants are provided with random competitive programming questions."
                 android:textColor="#fff"
-                android:textSize="12sp" />
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -91,41 +91,30 @@
                     android:text="Lab CC-09"
                     android:textColor="#fff"
                     android:textSize="14sp" />
+
+
             </LinearLayout>
+            <Button
+                android:id="@+id/visitInsta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_pressed"
+                android:backgroundTint="#C34A0A24"
+                android:fontFamily="@font/overpass_bold"
+                android:textStyle="bold"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="Visit"
+                android:textColor="#fff"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="10dp">
 
-            <TextView
-                android:id="@+id/trending"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:fontFamily="@font/overpass_bold"
-                android:text="Trending"
-                android:textColor="#fff"
-                android:textSize="13sp" />
 
-        <!--    <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/trending"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
-                android:id="@+id/event_type"
-                android:fontFamily="@font/overpass_bold"
-                android:text="Team Event"
-                android:textColor="#fff"
-                android:textSize="13sp" />-->
 
-        </RelativeLayout>
+
+
 
     </RelativeLayout>
 
