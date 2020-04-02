@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/tickets_icon"
-    android:title="Tickets"
-    android:icon="@drawable/tickets"
-    />
+
     <item
         android:id="@+id/home_icon"
         android:title="Home"
         android:icon="@drawable/home_icon"
         />
-    <item
-    android:id="@+id/schedule_icon"
-    android:title="Schedule"
-    android:icon="@drawable/schedule"
-    />
+
     <item
     android:id="@+id/developers_icon"
     android:title="Developers"
     android:icon="@drawable/dev_icon"
+    />
+   <item
+    android:id="@+id/nav_icon"
+    android:title=""
+    android:icon="@drawable/nav_icon"
     />
 
 </menu>
