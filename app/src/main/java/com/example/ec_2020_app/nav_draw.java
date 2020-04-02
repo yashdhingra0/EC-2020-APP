@@ -44,8 +44,18 @@ public class nav_draw extends BottomSheetDialogFragment {
 
 
                     case R.id.nav_item_five:
-                        Toast.makeText(getActivity(), "ab", Toast.LENGTH_SHORT).show();
-
+                       // Toast.makeText(getActivity(), "ab", Toast.LENGTH_SHORT).show();
+                        try {
+                            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                            shareIntent.setType("text/plain");
+                            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name");
+                            String shareMessage= "EC-2020 APP\n\n";
+                            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                            startActivity(Intent.createChooser(shareIntent, "choose one"));
+                        } catch(Exception e) {
+                            //e.toString();
+                        }
                         break;
                     case R.id.nav_item_six:
 
