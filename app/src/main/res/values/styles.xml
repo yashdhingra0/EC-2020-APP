@@ -34,7 +34,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ExpandedToolBar">
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">35sp</item>
         <item name="android:textColor">#000</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/overpass_black</item>
