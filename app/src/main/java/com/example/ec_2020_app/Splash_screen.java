@@ -40,7 +40,7 @@ public class Splash_screen extends AppCompatActivity {
         Thread timer = new Thread() {
             public void run() {
                 try {
-                    sleep(4000);
+                    sleep(1000);//will change it back
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
