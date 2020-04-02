@@ -1,6 +1,5 @@
 package com.example.ec_2020_app;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -27,12 +26,7 @@ import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.example.ec_2020_app.adapter.RoundStoryAdapter;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.example.ec_2020_app.story.stories_main;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Timer;
@@ -181,12 +174,10 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
-                    case R.id.tickets_icon:
-                        fragment=new tickets();
+                    case R.id.nav_icon:
+                        fragment=new nav_draw();
                         break;
-                    case R.id.schedule_icon:
-                        fragment=new schedule();
-                        break;
+
                     case R.id.developers_icon:
                         fragment=new developers();
                         break;

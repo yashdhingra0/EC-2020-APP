@@ -13,6 +13,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".sign_up"></activity>
         <activity android:name=".login" />
+        <activity android:name=".about"></activity>
+        <activity android:name=".nav_draw"></activity>
+        <activity android:name=".homepage">
+
+        </activity>
         <activity android:name=".story.stories_main" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Splash_screen">
             <intent-filter>
