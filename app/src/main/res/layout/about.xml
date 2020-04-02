@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/ec"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ec_logo"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ec"
+            android:id="@+id/ymca"
+            android:fontFamily="@font/overpass_black"
+            android:layout_centerHorizontal="true"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:padding="15dp"
+            android:text="About JCBUST, YMCA, Faridabad"/>
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/ymca"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1dp"
+            android:padding="10dp"
+            android:src="@drawable/ymca_logo" />
+
+        <TextView
+            android:layout_margin="20dp"
+            android:layout_below="@id/logo"
+            android:id="@+id/textView"
+            android:fontFamily="@font/overpass_black"
+            android:textSize="20sp"
+            android:textColor="@color/textGrey"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aboutEc"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
+</ScrollView>

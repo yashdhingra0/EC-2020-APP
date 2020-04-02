@@ -1,6 +1,5 @@
 package com.example.ec_2020_app;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -27,12 +26,7 @@ import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.example.ec_2020_app.adapter.RoundStoryAdapter;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.example.ec_2020_app.story.stories_main;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,7 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 import java.util.Timer;
@@ -88,7 +81,7 @@ public class MainActivity extends AppCompatActivity{
         //RecyclerView recyclerView = findViewById(R.id.recycler1);
         stories=findViewById(R.id.recycler1);
         stories.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        RecyclerView recyclerView2 = findViewById(R.id.recyclyer2);
+        RecyclerView recyclerView2 = findViewById(R.id.recycler2);
         ctx=this;
         storyProcessor();
         stories.setAdapter(new RoundStoryAdapter(this,sortedFrom,sortedState));
@@ -104,7 +97,7 @@ public class MainActivity extends AppCompatActivity{
         );
 
         recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
-        recyclerView2.setAdapter(new EventsAdapter2());
+        recyclerView2.setAdapter(new EventsAdapter2(ctx));
 
 
         final String mmobile = getIntent().getStringExtra("mmobile");
@@ -181,12 +174,11 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                     case R.id.home_icon:
                         fragment=new homepage();
                         break;
-                    case R.id.tickets_icon:
-                        fragment=new tickets();
+
+                    case R.id.nav_icon:
+                        fragment=new nav_draw();
                         break;
-                    case R.id.schedule_icon:
-                        fragment=new schedule();
-                        break;
+
                     case R.id.developers_icon:
                         fragment=new developers();
                         break;
@@ -231,7 +223,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
             @Override
             public void run() {
 
-                if(currentPosition==5)
+                if(currentPosition==8) // Prev Max = 5
                     currentPosition=0;
                 viewPager.setCurrentItem(currentPosition++,true);
 
@@ -252,9 +244,9 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         if(linearLayout.getChildCount()>0)
             linearLayout.removeAllViews();
 
-        ImageView dots[] = new ImageView[5];
+        ImageView dots[] = new ImageView[8];
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<8;i++)
         {
             dots[i] = new ImageView(this);
             if(i==currentSlidePosition)

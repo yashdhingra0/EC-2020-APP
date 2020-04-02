@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="250dp"
     android:layout_height="180dp"
     android:layout_margin="15dp"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    app:cardCornerRadius="14dp"
+    android:layout_gravity="center">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="10dp">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/beutifuls"/>
-    </androidx.cardview.widget.CardView>
+            android:id="@+id/clubImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/drama"/>
+    <TextView
+        android:id="@+id/clubNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Vivekanand Manch"
+        android:gravity="center"
+        android:foregroundGravity="center"
+        android:textColor="#ffff"
+        android:textStyle="bold|italic"
+        android:fontFamily="@font/overpass_black"
+        android:textSize="26sp"/>
 
-</LinearLayout>
+</RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
