@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EC-2020-APP</string>
+    <string name="app_name">EC 2020</string>
     <string name="mob_no">Mobile Number</string>
     <string name="login_tite">Login</string>
     <string name="continue_login_msg">To Continue your account !</string>

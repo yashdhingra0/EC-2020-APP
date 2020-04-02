@@ -223,7 +223,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
             @Override
             public void run() {
 
-                if(currentPosition==5)
+                if(currentPosition==8) // Prev Max = 5
                     currentPosition=0;
                 viewPager.setCurrentItem(currentPosition++,true);
 
@@ -244,9 +244,9 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         if(linearLayout.getChildCount()>0)
             linearLayout.removeAllViews();
 
-        ImageView dots[] = new ImageView[5];
+        ImageView dots[] = new ImageView[8];
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<8;i++)
         {
             dots[i] = new ImageView(this);
             if(i==currentSlidePosition)
