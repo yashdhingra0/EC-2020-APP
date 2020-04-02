@@ -1,14 +1,25 @@
 package com.example.ec_2020_app.adapter;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.ec_2020_app.R;
 import com.mikhaellopez.circularimageview.CircularImageView;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.StringTokenizer;
 
 //public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventsHolder> {
 //
@@ -62,12 +73,14 @@ public class RoundStoryAdapter extends RecyclerView.Adapter<RoundStoryAdapter.Vi
     private List<String> from;
     private List<Boolean> readState;
     private LayoutInflater mInflater;
+    private Context ctx;
 
     // data is passed into the constructor
     public RoundStoryAdapter(Context context, List<String> data, List<Boolean> readState) {
         this.mInflater = LayoutInflater.from(context);
         this.from = data;
         this.readState=readState;
+        ctx=context;
     }
 
     // inflates the row layout from xml when needed
@@ -78,10 +91,34 @@ public class RoundStoryAdapter extends RecyclerView.Adapter<RoundStoryAdapter.Vi
     }
 
     // binds the data to the TextView in each row
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         String from = this.from.get(position);
+        StringTokenizer stringTokenizer=new StringTokenizer(from);
+        int count=1;
+        String from2=from;
+        int n=stringTokenizer.countTokens();
+        from="";
+        if(n>1)
+        while (count<=n){
+            String k=stringTokenizer.nextToken();
+            from=from+" "+k.charAt(0)+".";
+            count++;
+        }
+        else
+            from=from2;
         holder.storyFrom.setText(from);
+        AssetManager assetManager = ctx.getAssets();
+        try (
+                InputStream inputStream = assetManager.open("club_logos/"+from2+".png");
+        ) {
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            holder.roundFrame.setImageBitmap(bitmap);
+        } catch (IOException ex) {
+            //Toast.makeText(ctx,"path - "+" club_logo/"+"from2"+".png",Toast.LENGTH_SHORT).show();
+        }
+
         Boolean state=this.readState.get(position);
         if(state){
             holder.roundFrame.setBorderColor(Color.parseColor("#192A56"));
