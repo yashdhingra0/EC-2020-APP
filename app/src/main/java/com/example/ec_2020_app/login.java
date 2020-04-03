@@ -155,6 +155,7 @@ public class login extends AppCompatActivity {
 
             }
         });
+
         builder.setView(view);
 
         AlertDialog alertDialog = builder.create();

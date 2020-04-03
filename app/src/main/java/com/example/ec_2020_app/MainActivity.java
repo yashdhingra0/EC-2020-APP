@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity{
                         //  show_email.setText(temp_email);
                         //  show_mobile.setText(temp_mobile);
                     } else {
-                        // show_email.setText("You should first sigu up and then come");
+
                         Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
                         Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
                         startActivity(goto_signup);

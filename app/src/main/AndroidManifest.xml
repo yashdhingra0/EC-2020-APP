@@ -6,9 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/ec_logo"
+        android:label="@string/culmyca"
+        android:roundIcon="@drawable/ec_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".sign_up"></activity>
