@@ -17,18 +17,21 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         android:gravity="center"/>
+
    <!-- <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Events"
+        android:text="Stories"
         android:layout_below="@+id/gallery"
         android:paddingTop="20dp"
         android:textSize="22dp"
         android:textColor="#000"
         android:textStyle="bold"
         android:layout_margin="20dp"
+        />
         />-->
+  
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler1"
         android:layout_width="match_parent"

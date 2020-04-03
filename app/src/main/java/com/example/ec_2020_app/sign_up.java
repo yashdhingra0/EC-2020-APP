@@ -80,6 +80,7 @@ public class sign_up extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(i);
+                finish();
             }
         });
 
@@ -287,5 +288,9 @@ String mob_no;
                 mCallbacks);        // OnVerificationStateChangedCallbacks
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

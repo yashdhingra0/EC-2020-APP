@@ -5,17 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ec_2020_app.EventActivity;
 import com.example.ec_2020_app.R;
+import com.example.ec_2020_app.utils.Utils;
 
 public class EventsAdapter2 extends RecyclerView.Adapter<EventsAdapter2.EventViewHolder> {
 
     Context context;
-    Integer[] clubLogo = {R.drawable.jhalak,R.drawable.nirmayam,R.drawable.srijan,R.drawable.vivekanand,R.drawable.natraj,R.drawable.vividha,R.drawable.ieee,R.drawable.microbird,R.drawable.mechnext,R.drawable.ananya};
 
     public EventsAdapter2(Context context) {
         this.context = context;
@@ -33,8 +34,9 @@ public class EventsAdapter2 extends RecyclerView.Adapter<EventsAdapter2.EventVie
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
 
-        holder.clubImage.setImageResource(clubLogo[position]);
+      //  holder.clubImage.setImageResource(clubLogo[position]);
 
+        holder.clubNames.setText(Utils.clubName[position]);
         holder.itemView.setOnClickListener(v -> {
             Intent eventsIntent = new Intent(context, EventActivity.class);
             eventsIntent.putExtra("position",position);
@@ -49,10 +51,10 @@ public class EventsAdapter2 extends RecyclerView.Adapter<EventsAdapter2.EventVie
     }
 
     public class EventViewHolder extends RecyclerView.ViewHolder {
-        ImageView clubImage;
+       TextView clubNames;
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
-            clubImage = itemView.findViewById(R.id.clubImage);
+            clubNames = itemView.findViewById(R.id.clubNames);
         }
     }
 }

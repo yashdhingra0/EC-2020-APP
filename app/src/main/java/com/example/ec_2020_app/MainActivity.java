@@ -224,7 +224,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
             @Override
             public void run() {
 
-                if(currentPosition==5)
+                if(currentPosition==8) // Prev Max = 5
                     currentPosition=0;
                 viewPager.setCurrentItem(currentPosition++,true);
 
@@ -245,9 +245,9 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         if(linearLayout.getChildCount()>0)
             linearLayout.removeAllViews();
 
-        ImageView dots[] = new ImageView[5];
+        ImageView dots[] = new ImageView[8];
 
-        for(int i=0;i<5;i++)
+        for(int i=0;i<8;i++)
         {
             dots[i] = new ImageView(this);
             if(i==currentSlidePosition)
@@ -276,10 +276,11 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         from.add("Manan");
         from.add("Ananya");
         from.add("IEEE");
+        from.add("Jhalak");
         from.add("Microbird");
         from.add("Nirmayam");
         from.add("Natraja");
-        from.add("TMR");
+        from.add("Team Mechnext Racing");
         from.add("Vividha");
 
 
@@ -304,6 +305,11 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         cc.add("file:///android_asset/club_images/ieee4-min.jpg");
         cc.add("file:///android_asset/club_images/ieee5-min.jpg");
         cc.add("file:///android_asset/club_images/ieee6-min.jpg");
+        alllinks.add(cc);
+        cc=new ArrayList<>();
+        cc.add("file:///android_asset/club_images/jh1-min.JPG");
+        cc.add("file:///android_asset/club_images/jh2-min.jpg");
+        cc.add("file:///android_asset/club_images/jh3-min.jpeg");
         alllinks.add(cc);
         cc=new ArrayList<>();
         cc.add("file:///android_asset/club_images/mb1-min.jpg");
@@ -373,6 +379,10 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         time.add(pp);
         pp.add(timearr[5]);
         time.add(pp);
+        cc=new ArrayList<>();
+        for (int i=0;i<3;i++)
+            cc.add(timearr[i]);
+        time.add(cc);
         time.add(pp);
         pp.add(timearr[6]);
         time.add(pp);
