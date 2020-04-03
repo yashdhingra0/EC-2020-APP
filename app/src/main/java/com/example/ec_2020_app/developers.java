@@ -27,7 +27,7 @@ public class developers extends Fragment {
     }*/
 
     private ArrayList<DeveloperModel> dev = new ArrayList<>();
-    RecyclerView recyclerView;
+    private  RecyclerView recyclerView;
     DevelopersAdapter mAdapter;
     DeveloperModel developer;
     Context mContext;
@@ -38,32 +38,40 @@ public class developers extends Fragment {
         super.onAttach( context );
         mContext = context;
     }
-
+    public developers() {
+        // Required empty public constructor
+    }
     @Override
     @NonNull
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate( R.layout.developersdata_fragment, container, false );
-
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled( true );
-        developer=new DeveloperModel ("R.drawable.yash","Yash Dhingra","https://www.linkedin.com/in/yash-dhingra-5ab39a155/","Team Head","https://github.com/yashdhingra0");
+        if (mContext == null) {
+            mContext = getActivity();
+        }
+        recyclerView = (RecyclerView) view.findViewById( R.id.dev_recycler_view );
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager( mContext );
+        recyclerView.setLayoutManager( mLayoutManager );
+        Boolean k=true;
+     //    AppCompatDelegate.setCompatVectorFromResourcesEnabled( true );
+        developer=new DeveloperModel ("https://i.ibb.co/BCMsDbB/yash.jpg","Yash Dhingra","https://www.linkedin.com/in/yash-dhingra-5ab39a155/","Team Head","https://github.com/yashdhingra0");
         dev.add(developer);
-        developer=new DeveloperModel ("R.drawable.priyanka","Priyanka Garg","https://www.linkedin.com/in/priyanka-garg-9b386215b","Co-ordinator","https://github.com/priyanka1698");
+        developer=new DeveloperModel ("https://i.ibb.co/zb5XZv7/IMG-20191005-WA0083-01.jpg","Priyanka Garg","https://www.linkedin.com/in/priyanka-garg-9b386215b","Co-ordinator","https://github.com/priyanka1698");
          dev.add(developer);
 
-        developer=new DeveloperModel ("R.drawable.karan","Karan Bhati","https://www.linkedin.com/in/karan-bhati-162367137/","Core App Developer","https://github.com/karanbhati007");
+        developer=new DeveloperModel ("https://i.ibb.co/8dBkRWG/karan.jpg","Karan Bhati","https://www.linkedin.com/in/karan-bhati-162367137/","Core App Developer","https://github.com/karanbhati007");
         dev.add(developer);
 
-        developer=new DeveloperModel ("R.drawable.rishabh","Rishabh Gupta","https://www.linkedin.com/in/rishabh-gupta-966701172/","Core App Developer","https://github.com/rishabh9720");
+        developer=new DeveloperModel ("https://i.ibb.co/931z4vr/rishabh.jpg","Rishabh Gupta","https://www.linkedin.com/in/rishabh-gupta-966701172/","Core App Developer","https://github.com/rishabh9720");
         dev.add(developer);
 
-        developer=new DeveloperModel ("R.drawable.payal","Payal Mangla","https://www.linkedin.com/in/payal-mangla-b32792172","Core App Developer","https://github.com/payalmangla17");
+        developer=new DeveloperModel ("https://i.ibb.co/qYwHv4P/IMG-20191013-WA0008.jpg","Payal Mangla","https://www.linkedin.com/in/payal-mangla-b32792172","Core App Developer","https://github.com/payalmangla17");
         dev.add(developer);
 
-        developer=new DeveloperModel ("R.drawable.ridham","Ridham Bhat","http://linkedin.com/in/ridham-bhat-49652417372","Core App Developer","http://github.com/ridhambhat");
+        developer=new DeveloperModel ("https://i.ibb.co/WVdxqWN/me.jpg","Ridham Bhat","http://linkedin.com/in/ridham-bhat-49652417372","Core App Developer","http://github.com/ridhambhat");
         dev.add(developer);
 
-        developer=new DeveloperModel ("R.drawable.manik","Manik Garg","https://www.linkedin.com/in/manik-garg-5060a4172","Core App Developer","https://github.com/Manik-Garg");
+        developer=new DeveloperModel ("https://i.ibb.co/4JsbzzR/profilepic.jpg","Manik Garg","https://www.linkedin.com/in/manik-garg-5060a4172","Core App Developer","https://github.com/Manik-Garg");
         dev.add(developer);
 
 
@@ -81,18 +89,17 @@ public class developers extends Fragment {
 
             }
         );
-        recyclerView = (RecyclerView) view.findViewById( R.id.dev_recycler_view );
+
         mAdapter = new DevelopersAdapter( mContext,dev);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager( mContext );
-        recyclerView.setLayoutManager( mLayoutManager );
+
         recyclerView.setAdapter( mAdapter );
         return view;
     }
 
-    private void addData() {
+   // private void addData() {
 
 
-    }
+    //}
 
 
    }

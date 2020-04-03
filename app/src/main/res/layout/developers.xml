@@ -12,8 +12,7 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
-
-        android:background="@color/White"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <RelativeLayout
@@ -23,9 +22,10 @@
 
             <ImageView
                 android:id="@+id/dev_photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ec_logo" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                />
 
             <ProgressBar
                 android:id="@+id/pb_dev_image"
@@ -60,7 +60,7 @@
                 android:fontFamily="@font/aclonica"
                 android:gravity="center"
                 android:text="Payal Mangla"
-                android:textColor="@color/Black"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <LinearLayout
