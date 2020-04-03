@@ -181,6 +181,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
 
                     case R.id.developers_icon:
                         fragment=new developers();
+                       // startActivity(new Intent(MainActivity.this,developers.class));
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragment).commit();
@@ -275,7 +276,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         from.add("Manan");
         from.add("Ananya");
         from.add("IEEE");
-        from.add("Srijan");
+        from.add("Jhalak");
         from.add("Microbird");
         from.add("Nirmayam");
         from.add("Natraja");
@@ -306,9 +307,9 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         cc.add("file:///android_asset/club_images/ieee6-min.jpg");
         alllinks.add(cc);
         cc=new ArrayList<>();
-        cc.add("file:///android_asset/club_images/sr1-min.JPG");
-        cc.add("file:///android_asset/club_images/sr2-min.jpg");
-        cc.add("file:///android_asset/club_images/sr3-min.jpeg");
+        cc.add("file:///android_asset/club_images/jh1-min.JPG");
+        cc.add("file:///android_asset/club_images/jh2-min.jpg");
+        cc.add("file:///android_asset/club_images/jh3-min.jpeg");
         alllinks.add(cc);
         cc=new ArrayList<>();
         cc.add("file:///android_asset/club_images/mb1-min.jpg");
