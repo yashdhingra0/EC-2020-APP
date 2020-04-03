@@ -5,6 +5,6 @@
         android:topRightRadius="30dp"
         />
     <stroke android:width="3dp"
-        android:color="@color/greay"/>
+        android:color="@color/colorAccent"/>
     <solid android:color="#ffff"/>
 </shape>
