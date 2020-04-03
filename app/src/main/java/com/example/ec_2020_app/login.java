@@ -35,7 +35,7 @@ public class login extends AppCompatActivity {
 
     Button loggin_button;
     private static final String TAG = "loginn";
-    TextView oppen_signup,skip_sign_in;
+    TextView oppen_signup,skip_sign_in,resend_otp;
     FirebaseAuth firebaseAuth;
     String verify_Id;
     PhoneAuthProvider.ForceResendingToken force_token;
@@ -50,7 +50,21 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            finish();
+            Intent i = new Intent(login.this, MainActivity.class);
+            i.putExtra("choice", 3);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
+            startActivity(i);
+
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+
+        }
         final Intent i = new Intent(this, sign_up.class);
 
         final Intent skip = new Intent(this,MainActivity.class);
@@ -73,6 +87,7 @@ public class login extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(i);
             }
         });
@@ -83,7 +98,7 @@ public class login extends AppCompatActivity {
             {
                 String datta = "rtr";
                 skip.putExtra("mmobile",datta);
-
+                finish();
                 startActivity(skip);
             }
         });
@@ -97,6 +112,8 @@ public class login extends AppCompatActivity {
                 Log.d(TAG, "onVerificationCompleted:" + credential);
 
             }
+
+
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
@@ -135,6 +152,13 @@ public class login extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(login.this);
 
         View view = getLayoutInflater().inflate(R.layout.fragment_otp_checker,null);
+        resend_otp = view.findViewById(R.id.tv_otp_resend);
+        resend_otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resendVerificationCode(mob_no, force_token);
+            }
+        });
         otp_text = view.findViewById(R.id.et_otp_dig_1);
 
         builder.setCancelable(false);
@@ -159,13 +183,15 @@ public class login extends AppCompatActivity {
         builder.setView(view);
 
         AlertDialog alertDialog = builder.create();
+
         alertDialog.show();
 
 
     }
+    String mob_no;
+
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-
 
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -180,6 +206,7 @@ public class login extends AppCompatActivity {
 
                             Intent inten = new Intent(login.this,MainActivity.class);
                             inten.putExtra("mmobile",numberToLogin.getText().toString());
+                            finish();
                             startActivity(inten);
 
 
@@ -196,7 +223,7 @@ public class login extends AppCompatActivity {
     }
 
     private void registerMobile() {
-        String mob_no = "+91" + numberToLogin.getText().toString().trim();
+         mob_no = "+91" + numberToLogin.getText().toString().trim();
 
         if (mob_no.length() != 13) {
             Toast.makeText(this, "Enter a valid 10 digit number", Toast.LENGTH_SHORT).show();
@@ -212,5 +239,14 @@ public class login extends AppCompatActivity {
                 mCallbacks);        // OnVerificationStateChangedCallbacks
     }
 
-
+    private void resendVerificationCode(String phoneNumber,
+                                        PhoneAuthProvider.ForceResendingToken token) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks,         // OnVerificationStateChangedCallbacks
+                token);             // ForceResendingToken from callbacks
+    }
 }

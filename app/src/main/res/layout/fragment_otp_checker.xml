@@ -29,7 +29,8 @@
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
 
         <LinearLayout
             android:id="@+id/ll_edit_texts"
@@ -55,7 +56,8 @@
                 android:padding="4dp"
 
                 android:textAlignment="center"
-                android:textSize="26dp" />
+                android:textSize="26dp"
+                android:gravity="center_horizontal" />
         </LinearLayout>
 
         <TextView
@@ -69,7 +71,8 @@
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/tv_display_text"
@@ -84,7 +87,8 @@
             android:text="A message with a verification code has been sent to your device. Please enter the code and continue!!"
             android:textAlignment="center"
             android:textColor="#000"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/tv_otp_resend"
@@ -97,7 +101,8 @@
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="12dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:gravity="center_horizontal" />
 
     </RelativeLayout>
 

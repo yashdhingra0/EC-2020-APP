@@ -39,7 +39,7 @@ import java.util.concurrent.TimeUnit;
 public class sign_up extends AppCompatActivity {
 
     FirebaseAuth fauth;
-    TextView loggin_page,skip_signup;
+    TextView loggin_page,skip_signup,resend_otp;
     Button signup_click;
     private static final String TAG = "siggnup";
     TextInputEditText t_name, t_college, t_email, t_mobile;
@@ -72,6 +72,7 @@ public class sign_up extends AppCompatActivity {
                 public void onClick(View v) {
                     String datta = "rtr";
                     skipp.putExtra("mmobile",datta);
+                    finish();
                     startActivity(skipp);
                 }
             });
@@ -79,8 +80,8 @@ public class sign_up extends AppCompatActivity {
         loggin_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(i);
                 finish();
+                startActivity(i);
             }
         });
 
@@ -187,6 +188,13 @@ public class sign_up extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(sign_up.this);
 
         View view = getLayoutInflater().inflate(R.layout.fragment_otp_checker,null);
+        resend_otp = view.findViewById(R.id.tv_otp_resend);
+        resend_otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resendVerificationCode(mob_no, force_token);
+            }
+        });
         otp_text = view.findViewById(R.id.et_otp_dig_1);
         builder.setCancelable(false);
         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -233,6 +241,7 @@ public class sign_up extends AppCompatActivity {
 
                             Intent inten = new Intent(sign_up.this,MainActivity.class);
                             inten.putExtra("mmobile",t_mobile.getText().toString().trim());
+                           finish();
                             startActivity(inten);
                             // ...
                         } else {
@@ -292,5 +301,15 @@ String mob_no;
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+    private void resendVerificationCode(String phoneNumber,
+                                        PhoneAuthProvider.ForceResendingToken token) {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                phoneNumber,        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                this,               // Activity (for callback binding)
+                mCallbacks,         // OnVerificationStateChangedCallbacks
+                token);             // ForceResendingToken from callbacks
     }
 }
