@@ -11,10 +11,16 @@
         android:roundIcon="@drawable/ec_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sign_up"></activity>
+
+        <activity
+            android:name=".EventActivity"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".sign_up"/>
         <activity android:name=".login" />
-        <activity android:name=".about"></activity>
-        <activity android:name=".nav_draw"></activity>
+        <activity android:name=".about"/>
+        <activity android:name=".nav_draw"/>
+
         <activity android:name=".homepage">
 
         </activity>

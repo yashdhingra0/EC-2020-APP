@@ -76,30 +76,12 @@ public class developers extends Fragment {
 
 
 
-        view.findViewById(R.id.dev_back_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                Fragment f =  fragmentManager.findFragmentById(R.id.frame);
-
-
-                   fragmentManager.beginTransaction().replace(R.id.frame, new homepage()).commit();
-                }
-
-
-            }
-        );
-
         mAdapter = new DevelopersAdapter( mContext,dev);
 
         recyclerView.setAdapter( mAdapter );
         return view;
     }
 
-   // private void addData() {
-
-
-    //}
 
 
    }

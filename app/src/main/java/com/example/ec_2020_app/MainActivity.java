@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity{
      //   show_college = findViewById(R.id.fetch_college);
     //    show_email = findViewById(R.id.fetch_email);
      //   show_mobile = findViewById(R.id.fetch_mobile);
+        bottomNavigationView.setSelectedItemId(R.id.home_icon);
 
         galleryViewPager();
 
@@ -175,12 +176,12 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                 Fragment fragment=null;
                 switch(item.getItemId())
                 {
-                    case R.id.home_icon:
-                        fragment=new homepage();
-                        break;
-
                     case R.id.nav_icon:
                         fragment=new nav_draw();
+                        break;
+
+                    case R.id.home_icon:
+                        fragment=new homepage();
                         break;
 
                     case R.id.developers_icon:

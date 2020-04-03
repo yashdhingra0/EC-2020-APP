@@ -14,16 +14,6 @@
         android:layout_marginTop="5dp"
         android:background="@color/white">
 
-        <ImageView
-            android:id="@+id/dev_back_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/vector_arrow"
-            android:tint="#717070" />
-
         <TextView
             android:id="@+id/tv_notification_heading"
             android:layout_width="wrap_content"
@@ -31,7 +21,6 @@
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aclonica"
-
             android:text="Developers"
             android:textAllCaps="true"
             android:textColor="#000"
