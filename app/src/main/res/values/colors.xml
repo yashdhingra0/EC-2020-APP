@@ -9,5 +9,8 @@
     <color name="black">#0C0C0C</color>
     <color name="my_orange">#F5C073</color>
     <color name="inactive">#8A8C91</color>
+    <color name="toolbar">#12184C</color>
     <color name="active">#FFFFFF</color>
+    <color name="greay">#E7E4E4</color>
+    <color name="textGrey">#7A7A7A</color>
 </resources>
