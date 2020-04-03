@@ -100,7 +100,10 @@ public class MainActivity extends AppCompatActivity{
         recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         recyclerView2.setAdapter(new EventsAdapter2(ctx));
 
+        int variable = getIntent().getIntExtra("choice",1);
 
+        if(variable!=3)
+        {
         final String mmobile = getIntent().getStringExtra("mmobile");
 
         String datta = "rtr";
@@ -110,44 +113,45 @@ public class MainActivity extends AppCompatActivity{
                 Log.e("TAG","alpha");
                 Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
                 Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
+               finish();
                 startActivity(goto_signup);
             }
 
-            if(!mmobile.equals(datta))
-        {
+            if(!mmobile.equals(datta)) {
 
-            Log.e("TAG","betA");
-            Toast.makeText(this, mmobile, Toast.LENGTH_LONG).show();
+                Log.e("TAG", "betA");
+                Toast.makeText(this, mmobile, Toast.LENGTH_LONG).show();
 
-          reff = FirebaseDatabase.getInstance().getReference().child("users").child(mmobile);
-            reff.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String temp_name = dataSnapshot.child("full_name").getValue().toString();
-                        String temp_college = dataSnapshot.child("college").getValue().toString();
-                        String temp_email = dataSnapshot.child("email").getValue().toString();
-                        String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
+                reff = FirebaseDatabase.getInstance().getReference().child("users").child(mmobile);
+                reff.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            String temp_name = dataSnapshot.child("full_name").getValue().toString();
+                            String temp_college = dataSnapshot.child("college").getValue().toString();
+                            String temp_email = dataSnapshot.child("email").getValue().toString();
+                            String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
 
-                        // show_name.setText(temp_name);
-                        //  show_college.setText(temp_college);
-                        //  show_email.setText(temp_email);
-                        //  show_mobile.setText(temp_mobile);
-                    } else {
-                        // show_email.setText("You should first sigu up and then come");
-                        Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
-                        Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
-                        startActivity(goto_signup);
+                            // show_name.setText(temp_name);
+                            //  show_college.setText(temp_college);
+                            //  show_email.setText(temp_email);
+                            //  show_mobile.setText(temp_mobile);
+                        } else {
+
+                            Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
+                            Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
+                          finish();
+                            startActivity(goto_signup);
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(MainActivity.this, "Sorry try again", Toast.LENGTH_SHORT).show();
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(MainActivity.this, "Sorry try again", Toast.LENGTH_SHORT).show();
+                    }
 
-            });
-
+                });
+            }
         }
 
 
@@ -185,7 +189,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                        // startActivity(new Intent(MainActivity.this,developers.class));
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragment).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.frame,fragment).commit();
                 return true;
             }
         };
