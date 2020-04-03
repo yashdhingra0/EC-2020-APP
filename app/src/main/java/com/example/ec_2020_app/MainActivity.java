@@ -189,7 +189,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
                        // startActivity(new Intent(MainActivity.this,developers.class));
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().add(R.id.frame,fragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame,fragment).commit();
                 return true;
             }
         };
