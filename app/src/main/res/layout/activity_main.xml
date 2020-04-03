@@ -1,93 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
-
-<androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/bottom_nav">
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/gallery"
-                android:layout_width="match_parent"
-                android:layout_height="220dp"/>
-
-            <LinearLayout
-                android:id="@+id/dotsIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/gallery"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:alpha="0.6"/>
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stories"
-                android:layout_below="@+id/gallery"
-                android:paddingTop="20dp"
-                android:textSize="22dp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:layout_margin="15dp"
-                />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView1"
-                android:layout_marginLeft="7dp" />
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Events"
-                android:layout_below="@+id/recycler1"
-                android:textSize="22dp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:paddingTop="10dp"
-                android:layout_margin="15dp"
-                />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:foregroundGravity="center"
-                android:layout_below="@+id/textView2" />
-
-        </RelativeLayout>
-</androidx.core.widget.NestedScrollView>
+    tools:context=".MainActivity"
+    android:background="#ffff">
 
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frame"
-        android:layout_above="@+id/bottom_nav"
-        />
+        android:layout_above="@id/bottom_nav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="32">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/gallery"
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp" />
+
+                    <LinearLayout
+                        android:id="@+id/dotsIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/gallery"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginBottom="30dp"
+                        android:alpha="0.6"
+                        android:gravity="center"
+                        android:orientation="horizontal" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="30"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Stories"
+                        android:paddingTop="10dp"
+                        android:textSize="22dp"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:layout_margin="15dp"
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/textView1"
+                        android:layout_marginLeft="7dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="40"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Events"
+                        android:textSize="22dp"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        android:layout_margin="15dp"
+                        />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:foregroundGravity="center"
+                        android:layout_below="@+id/textView2" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottomnavigation"
+        android:layout_alignParentBottom="true"
         android:background="@color/active"
         app:itemIconTint="@color/black"
-        android:id="@+id/bottom_nav"
-        android:layout_alignParentBottom="true"
         app:labelVisibilityMode="selected"
-        />
+        app:menu="@menu/bottomnavigation" />
 
 </RelativeLayout>
 

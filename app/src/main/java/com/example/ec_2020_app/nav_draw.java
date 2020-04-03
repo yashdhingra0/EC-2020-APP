@@ -2,6 +2,7 @@ package com.example.ec_2020_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -23,6 +25,10 @@ public class nav_draw extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.nav_main, container, false);
         NavigationView nav_view = v.findViewById(R.id.nav_view);
+
+        DrawerLayout drawerLayout = v.findViewById(R.id.drawerLayout);
+        drawerLayout.openDrawer(Gravity.LEFT);
+
 
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

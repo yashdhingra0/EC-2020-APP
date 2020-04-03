@@ -76,7 +76,7 @@ public class developers extends Fragment {
 
 
 
-        view.findViewById(R.id.dev_back_button).setOnClickListener(new View.OnClickListener() {
+       /* view.findViewById(R.id.dev_back_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
@@ -88,7 +88,7 @@ public class developers extends Fragment {
 
 
             }
-        );
+        );*/
 
         mAdapter = new DevelopersAdapter( mContext,dev);
 
