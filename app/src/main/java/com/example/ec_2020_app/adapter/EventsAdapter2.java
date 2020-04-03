@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ec_2020_app.EventActivity;
 import com.example.ec_2020_app.R;
+import com.example.ec_2020_app.utils.Utils;
 
 public class EventsAdapter2 extends RecyclerView.Adapter<EventsAdapter2.EventViewHolder> {
 
