@@ -140,7 +140,10 @@ public class fragment_story extends Fragment {
                     Log.i("TAG", "onKey Back listener is working!!!");
                     //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     pause();
+                    Hide();
                     getActivity().finish();
+                    getActivity().overridePendingTransition(0,R.anim.slide_down);
+
                     return true;
                 }
                 //if (keyCode==KeyEvent.K)
@@ -424,6 +427,9 @@ public class fragment_story extends Fragment {
         pillanim[currentindex].resume();
         Visible();
     }
+
+
+
 
 
 }

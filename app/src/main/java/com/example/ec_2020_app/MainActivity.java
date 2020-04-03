@@ -283,7 +283,7 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         from.add("IEEE");
         from.add("Jhalak");
         from.add("Microbird");
-        from.add("Nirmayam");
+        from.add("Niramayam");
         from.add("Natraja");
         from.add("Team Mechnext Racing");
         from.add("Vividha");
@@ -450,8 +450,8 @@ private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSele
         it.putExtra("index",position);
         it.putExtra("from",sortedFrom);
         it.putExtra("time",sortedTime);
-
         startActivityForResult(it,0);
+        overridePendingTransition(R.anim.zoom_enter, 0);
     }
 
     private ArrayList<String> sharedlinkstolist(){

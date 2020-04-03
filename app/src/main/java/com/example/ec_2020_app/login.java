@@ -100,6 +100,7 @@ public class login extends AppCompatActivity {
                 skip.putExtra("mmobile",datta);
                 finish();
                 startActivity(skip);
+                overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
             }
         });
 

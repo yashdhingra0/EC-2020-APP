@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.ec_2020_app.MainActivity;
 import com.example.ec_2020_app.R;
 import com.example.ec_2020_app.SaveSharedPreference;
+import com.example.ec_2020_app.homepage;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,7 +44,6 @@ public class stories_main extends AppCompatActivity {
         current_index--;
         ctx=this;
         links = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("url");
-        //time = (ArrayList<ArrayList<String>>) intent.getSerializableExtra("time");
         from=(ArrayList<String>)intent.getSerializableExtra("from");
         time=(ArrayList<ArrayList<String>>) intent.getSerializableExtra("time");
         allIndex =intent.getIntArrayExtra("allIndex");
@@ -51,7 +52,7 @@ public class stories_main extends AppCompatActivity {
             Log.d("Links", links.get(i).toString());
         }
         fm=getSupportFragmentManager();
-        goNextFrame(0);
+        goFirstFrame();
         activity=this;
     }
 
@@ -60,6 +61,25 @@ public class stories_main extends AppCompatActivity {
         super.onBackPressed();
         activity.finish();
     }
+
+    public static void goFirstFrame(){
+        int previndex=0;
+        if(current_index>=0&&current_index<links.size())
+            allIndex[current_index]=previndex;
+        current_index++;
+        if(current_index>=links.size()){
+            activity.finish();
+        }
+        else {
+            FragmentTransaction ft = fm.beginTransaction();
+            final fragment_story fr = fragment_story.newInstance(links.size(), current_index, allIndex[current_index], links.get(current_index),from.get(current_index),time.get(current_index));
+            ft.replace(R.id.frame, fr,"tag");
+            ft.commit();
+            Log.d("Page", "Change in Page -- next");
+        }
+    }
+
+
 
     public static void goNextFrame(int previndex){
 
