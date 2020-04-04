@@ -36,5 +36,8 @@
     <string name="open">open</string>
     <string name="close"> close</string>
 
+    <string name="send_sms_api" translatable="false">https://2factor.in/API/V1/9983a223-ae79-11e6-a40f-00163ef91450/SMS/</string>
+
+
 
 </resources>

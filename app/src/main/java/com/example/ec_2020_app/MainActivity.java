@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity{
             }
         }
 
-
     /*    log_out.setOnClickListener(new View.OnClickListener() {
 
             @Override

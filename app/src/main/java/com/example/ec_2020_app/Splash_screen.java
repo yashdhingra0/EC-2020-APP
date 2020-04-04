@@ -4,17 +4,13 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.example.ec_2020_app.model.User;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.ec_2020_app.Login.login;
 
 import java.util.Objects;
 

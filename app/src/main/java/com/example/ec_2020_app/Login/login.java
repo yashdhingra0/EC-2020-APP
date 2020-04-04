@@ -1,4 +1,4 @@
-package com.example.ec_2020_app;
+package com.example.ec_2020_app.Login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,25 +14,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ec_2020_app.Login.FragmentOtpChecker;
-import com.example.ec_2020_app.Login.login;
-import com.example.ec_2020_app.model.User;
+import com.example.ec_2020_app.MainActivity;
+import com.example.ec_2020_app.R;
+import com.example.ec_2020_app.sign_up;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthResult;
@@ -40,53 +44,50 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.Inflater;
 
 import static com.example.ec_2020_app.Login.FragmentOtpChecker.REQUEST_ID_MULTIPLE_PERMISSIONS;
 
-public class sign_up extends AppCompatActivity implements FragmentOtpChecker.otpCheckStatus {
-    TextView login,guest;
-    Button submit;
-    EditText userName,userCollege,userPhone,userEmail;
+public class login extends Activity implements FragmentOtpChecker.otpCheckStatus{
+
+    TextView guestLogin,signUp;
+    EditText phoneNumber;
     private ProgressDialog mProgress;
-    private String musername;
-    private String muserclg,mUserPhone,mUserEmail;
-    SharedPreferences sharedPreferences;
+    Button submit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-        login=findViewById(R.id.open_login);
-        submit=findViewById(R.id.btn_signUp);
-        guest=findViewById(R.id.skip_signup);
-        userName=findViewById(R.id.signup_name);
-        userCollege=findViewById(R.id.signup_college);
-        userPhone=findViewById(R.id.signup_number);
-        userEmail = findViewById(R.id.signup_email);
+        setContentView(R.layout.activity_login);
+
+        phoneNumber = findViewById(R.id.num_text);
+        submit = findViewById(R.id.login_button);
+        signUp=findViewById(R.id.open_signup);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent i = new Intent(login.this, sign_up.class);
+                startActivity(i);
+            }
+        });
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Registering You");
         mProgress.setTitle("Please Wait");
         mProgress.setCanceledOnTouchOutside(false);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(sign_up.this,login.class));
-            }
-        });
-        guest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(sign_up.this,MainActivity.class));
-            }
-        });
+        ///////////
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        String color = "#0f0f0f";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(Color.parseColor(color));
+        }
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,15 +95,44 @@ public class sign_up extends AppCompatActivity implements FragmentOtpChecker.otp
                 if (checker) {
                     mProgress.show();
                     checkOTP();
-                    sharedPreferences=getSharedPreferences("login_details",0);
-                    musername = userName.getText().toString();
-                    muserclg= userCollege.getText().toString();
-                    mUserPhone = userPhone.getText().toString();
-                    mUserEmail = userEmail.getText().toString();
                 }
             }
         });
+        guestLogin = findViewById(R.id.skip_signin);
+
+        guestLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent skip = new Intent(login.this, MainActivity.class);
+                String data = "rtr";
+                skip.putExtra("mmobile",data);
+                finish();
+                startActivity(skip);
+            }
+        });
     }
+
+    private Boolean validateCredentials() {
+        if (!isNetworkAvailable()) {
+            Toast.makeText(this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (phoneNumber.getText().toString().equals("")) {
+            phoneNumber.setError("Enter a Phone Number");
+            return false;
+        }
+        if (!Patterns.PHONE.matcher(phoneNumber.getText().toString()).matches()) {
+            phoneNumber.setError("Enter a valid Phone Number");
+            return false;
+        }
+        if (phoneNumber.getText().toString().length() != 10) {
+            phoneNumber.setError("Enter a valid Phone Number");
+            return false;
+        }
+
+        return true;
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -111,11 +141,11 @@ public class sign_up extends AppCompatActivity implements FragmentOtpChecker.otp
     }
     private void checkOTP() {
         checkAndRequestPermissions();
-        if(ContextCompat.checkSelfPermission(sign_up.this, android.Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(login.this, android.Manifest.permission.READ_SMS) == PackageManager.PERMISSION_GRANTED){
             FragmentManager fm = getFragmentManager();
             FragmentOtpChecker otpChecker = new FragmentOtpChecker();
             Bundle bundle = new Bundle();
-            bundle.putString("phone", userPhone.getText().toString());
+            bundle.putString("phone", phoneNumber.getText().toString());
             otpChecker.setArguments(bundle);
             otpChecker.show(fm, "otpCheckerFragment");
         }
@@ -142,55 +172,17 @@ public class sign_up extends AppCompatActivity implements FragmentOtpChecker.otp
                     REQUEST_ID_MULTIPLE_PERMISSIONS);
         }
     }
-    private Boolean validateCredentials() {
-        if (!isNetworkAvailable()) {
-            Toast.makeText(sign_up.this, "Check your Internet Connection", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (userName.getText().toString().equals("")) {
-            userName.setError("Enter a User Name");
-            return false;
-        }
-
-        if (userPhone.getText().toString().equals("")) {
-            userPhone.setError("Enter a Phone Number");
-            return false;
-        }
-        if (!Patterns.PHONE.matcher(userPhone.getText().toString()).matches()) {
-            userPhone.setError("Enter a valid Phone Number");
-            return false;
-        }
-        if (userPhone.getText().toString().length() != 10) {
-            userPhone.setError("Enter a valid Phone Number");
-            return false;
-        }
-        if (userCollege.getText().toString().equals("")) {
-            userCollege.setError("Enter a College Name");
-            return false;
-        }
-
-        if(userEmail.getText().toString().equals("")){
-            userEmail.setError("Enter a email address");
-            return false;
-        }
-
-        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail.getText().toString()).matches()){
-            userEmail.setError("Enter a valid email address");
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public void updateResult(boolean status) {
         if (status) {
-            SharedPreferences.Editor editor= sharedPreferences.edit();
-            editor.putString("Username",musername);
-            editor.putString("UserClg",muserclg);
-            editor.putString("UserPhone",mUserPhone);
-            editor.putString("UserEmail",mUserEmail);
-            editor.commit();
-            startActivity(new Intent(sign_up.this,MainActivity.class));
+            Intent intent = new Intent(login.this,MainActivity.class);
+            //TODO
+            //shared prefrece
+
+            String datta = "rtr";
+            intent.putExtra("mmobile",datta);
+            finish();
+            startActivity(intent);
             finish();
         } else {
             mProgress.dismiss();
@@ -203,7 +195,7 @@ public class sign_up extends AppCompatActivity implements FragmentOtpChecker.otp
             FragmentManager fm = getFragmentManager();
             FragmentOtpChecker otpChecker = new FragmentOtpChecker();
             Bundle bundle = new Bundle();
-            bundle.putString("phone", userPhone.getText().toString());
+            bundle.putString("phone", phoneNumber.getText().toString());
             otpChecker.setArguments(bundle);
             otpChecker.show(fm, "otpCheckerFragment");
         }

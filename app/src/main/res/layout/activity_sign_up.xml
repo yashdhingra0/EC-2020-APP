@@ -71,7 +71,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/signup_email"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -151,7 +150,6 @@
             android:id="@+id/open_login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:layout_marginRight="20dp"
             android:layout_weight="0.5"
             android:gravity="center"
