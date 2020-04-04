@@ -18,7 +18,7 @@
            android:text="@string/online_fest"
            android:layout_above="@+id/showMustGoOn"
            android:layout_margin="20dp"
-           android:textColor="#FF4D16" />
+           android:textColor="#D9FF4D16" />
 
         <TextView
             android:id="@+id/showMustGoOn"
@@ -30,6 +30,6 @@
             android:textSize="20sp"
             android:text="@string/the_show_must_go_on"
             android:fontFamily="@font/overpass_black"
-            android:textColor="@color/my_orange" />
+            android:textColor="#EAF5C073" />
 
 </RelativeLayout>
