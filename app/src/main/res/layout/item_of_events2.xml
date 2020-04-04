@@ -18,7 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:scaleType="centerInside"
+            android:scaleType="centerCrop"
+            android:id="@+id/backgroundImage"
+            android:tint="#7E000000"
             android:src="@drawable/drama"/>
     <TextView
         android:id="@+id/clubNames"
