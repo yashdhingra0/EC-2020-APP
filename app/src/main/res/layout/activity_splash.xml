@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-<ImageView
+    <ImageView
     android:id="@+id/splashh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:src="@drawable/splash_screen"
-    android:scaleType="centerCrop"
-    />
-</LinearLayout>
+    android:scaleType="centerCrop" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerHorizontal="true"
+           android:fontFamily="@font/overpass_black"
+           android:textSize="30sp"
+           android:text="@string/online_fest"
+           android:layout_above="@+id/showMustGoOn"
+           android:layout_margin="20dp"
+           android:textColor="#FF4D16" />
+
+        <TextView
+            android:id="@+id/showMustGoOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:textSize="20sp"
+            android:text="@string/the_show_must_go_on"
+            android:fontFamily="@font/overpass_black"
+            android:textColor="@color/my_orange" />
+
+</RelativeLayout>

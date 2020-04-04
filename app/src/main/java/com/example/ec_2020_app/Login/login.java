@@ -1,8 +1,6 @@
 package com.example.ec_2020_app.Login;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -10,7 +8,6 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -19,67 +16,52 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ec_2020_app.MainActivity;
 import com.example.ec_2020_app.R;
-import com.example.ec_2020_app.sign_up;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.zip.Inflater;
 
 import static com.example.ec_2020_app.Login.FragmentOtpChecker.REQUEST_ID_MULTIPLE_PERMISSIONS;
 
 public class login extends Activity implements FragmentOtpChecker.otpCheckStatus{
 
-    TextView guestLogin,signUp;
+    TextView guestLogin;
     EditText phoneNumber;
     private ProgressDialog mProgress;
     Button submit;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        sharedPreferences = this.getSharedPreferences("com.example.ec_2020_app.Login", Context.MODE_PRIVATE);
+        if(sharedPreferences.getString("isFirst",null)!=null)
+        {
+            Snackbar.make(findViewById(android.R.id.content), "Welcome Back !!", Snackbar.LENGTH_SHORT).show();
+            startActivity(new Intent(login.this,MainActivity.class));
+            finish();
+        }
+
         phoneNumber = findViewById(R.id.num_text);
         submit = findViewById(R.id.login_button);
-        signUp=findViewById(R.id.open_signup);
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                Intent i = new Intent(login.this, sign_up.class);
-                startActivity(i);
-            }
-        });
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Registering You");
         mProgress.setTitle("Please Wait");
         mProgress.setCanceledOnTouchOutside(false);
-        ///////////
+
         Window window = getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -87,6 +69,7 @@ public class login extends Activity implements FragmentOtpChecker.otpCheckStatus
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.setStatusBarColor(Color.parseColor(color));
         }
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +160,7 @@ public class login extends Activity implements FragmentOtpChecker.otpCheckStatus
         if (status) {
             Intent intent = new Intent(login.this,MainActivity.class);
             //TODO
-            //shared prefrece
+            sharedPreferences.edit().putString("isFirst", "yo").apply();
 
             String datta = "rtr";
             intent.putExtra("mmobile",datta);

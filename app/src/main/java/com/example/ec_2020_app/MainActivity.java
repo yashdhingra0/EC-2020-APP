@@ -2,6 +2,7 @@ package com.example.ec_2020_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -22,11 +23,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.ec_2020_app.Login.login;
 import com.example.ec_2020_app.adapter.EventsAdapter2;
 import com.example.ec_2020_app.adapter.RoundStoryAdapter;
 import com.example.ec_2020_app.adapter.ViewPagerAdapter;
 import com.example.ec_2020_app.story.stories_main;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new homepage()).commit();
         }
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.example.ec_2020_app.Login", Context.MODE_PRIVATE);
+        if(sharedPreferences.getString("isFirst2nd",null)!=null)
+        {
+            Snackbar.make(findViewById(android.R.id.content), "Welcome Back !!", Snackbar.LENGTH_SHORT).show();
+        }
+        sharedPreferences.edit().putString("isFirst2nd", "yo").apply();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
         //  log_out = findViewById(R.id.log_out);
@@ -101,71 +112,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView2.setAdapter(new EventsAdapter2(ctx));
 
-        int variable = getIntent().getIntExtra("choice", 1);
 
-        if (variable != 3) {
-            final String mmobile = getIntent().getStringExtra("mmobile");
-
-            String datta = "rtr";
-
-            if (mmobile.isEmpty()) {
-                Log.e("TAG", "alpha");
-                Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
-                Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
-                finish();
-                startActivity(goto_signup);
-            }
-
-            if (!mmobile.equals(datta)) {
-
-                Log.e("TAG", "betA");
-                Toast.makeText(this, mmobile, Toast.LENGTH_LONG).show();
-
-                reff = FirebaseDatabase.getInstance().getReference().child("users").child(mmobile);
-                reff.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            String temp_name = dataSnapshot.child("full_name").getValue().toString();
-                            String temp_college = dataSnapshot.child("college").getValue().toString();
-                            String temp_email = dataSnapshot.child("email").getValue().toString();
-                            String temp_mobile = dataSnapshot.child("mobile_no").getValue().toString();
-
-                            // show_name.setText(temp_name);
-                            //  show_college.setText(temp_college);
-                            //  show_email.setText(temp_email);
-                            //  show_mobile.setText(temp_mobile);
-                        } else {
-
-                            Toast.makeText(MainActivity.this, "You should first sign up and then come", Toast.LENGTH_LONG).show();
-                            Intent goto_signup = new Intent(MainActivity.this, sign_up.class);
-                            finish();
-                            startActivity(goto_signup);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(MainActivity.this, "Sorry try again", Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-            }
-        }
-
-    /*    log_out.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                    FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(MainActivity.this, "Logging Out !!", Toast.LENGTH_SHORT).show();
-                    Intent go_to_login = new Intent(MainActivity.this, login.class);
-                    startActivity(go_to_login);
-                }
-            }
-        });*/
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
