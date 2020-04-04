@@ -42,11 +42,11 @@ public class nav_draw extends BottomSheetDialogFragment {
                        Fragment f=new homepage();
                        getFragmentManager().beginTransaction().replace(R.id.frame,f).commit();
                         break;
+
                     case R.id.nav_item_two:
                         Intent it = new Intent(getActivity(), about.class);
                         startActivity(it);
-
-                        break;
+                          break;
 
 
                     case R.id.nav_item_five:
