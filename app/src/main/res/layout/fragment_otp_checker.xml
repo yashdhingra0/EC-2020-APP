@@ -23,14 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_phone"
-
+            android:fontFamily="@font/overpass_black"
             android:padding="4dp"
             android:text="Phone Authentication"
-            android:textAlignment="center"
+           android:gravity="center"
             android:textColor="#000"
             android:textSize="16dp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/ll_edit_texts"
@@ -43,21 +42,106 @@
             android:layout_marginEnd="40dp"
             android:layout_marginRight="40dp">
 
-            <EditText
-                android:id="@+id/et_otp_dig_1"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/otp_edit_text_background"
-                android:inputType="number"
-                android:maxLength="6"
+                android:layout_weight="1">
 
-                android:nextFocusDown="@+id/et_otp_dig_2"
-                android:padding="4dp"
+                <EditText
+                    android:id="@+id/et_otp_dig_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:nextFocusDown="@+id/et_otp_dig_2"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
 
-                android:textAlignment="center"
-                android:textSize="26dp"
-                android:gravity="center_horizontal" />
+                <EditText
+                    android:id="@+id/et_otp_dig_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:nextFocusDown="@+id/et_otp_dig_3"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
+
+                <EditText
+                    android:id="@+id/et_otp_dig_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:nextFocusDown="@+id/et_otp_dig_4"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/et_otp_dig_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:nextFocusDown="@+id/et_otp_dig_5"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
+
+                <EditText
+                    android:id="@+id/et_otp_dig_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:nextFocusDown="@+id/et_otp_dig_6"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
+
+                <EditText
+                    android:id="@+id/et_otp_dig_6"
+                    android:layout_width="0dp"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/otp_edit_text_background"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="4dp"
+                    android:gravity="center"
+                    android:textSize="26dp" />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -67,12 +151,12 @@
             android:layout_below="@id/ll_edit_texts"
             android:layout_marginTop="4dp"
             android:padding="6dp"
-            android:text=""
-            android:textAlignment="center"
+            android:text="Click Here To Continue"
+            android:gravity="center"
             android:textColor="#000"
-            android:textSize="12dp"
+            android:fontFamily="@font/overpass_black"
             android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_display_text"
@@ -84,11 +168,10 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
-            android:text="A message with a verification code has been sent to your device. Please enter the code and continue!!"
-            android:textAlignment="center"
+            android:text="A message with a verification code has been sent to your device. Please enter and Continue!!"
+            android:gravity="center"
             android:textColor="#000"
-            android:textSize="12dp"
-            android:gravity="center_horizontal" />
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_otp_resend"
@@ -98,11 +181,10 @@
             android:layout_marginTop="6dp"
             android:padding="6dp"
             android:text="Didn't get a verification code?"
-            android:textAlignment="center"
-            android:textColor="#000"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal" />
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:textColor="#000629"
+            android:textSize="12dp" />
 
     </RelativeLayout>
 
@@ -112,5 +194,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone" />
+
 
 </RelativeLayout>

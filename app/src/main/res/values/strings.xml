@@ -3,7 +3,7 @@
     <string name="mob_no">Mobile Number</string>
     <string name="login_tite">Login</string>
     <string name="continue_login_msg">To Continue your account !</string>
-    <string name="sign_in_title">Sign In</string>
+    <string name="sign_in_title">Enter</string>
     <string name="dont_account_msg">Don\'t have an account?</string>
     <string name="create_account_msg">CreateAccount</string>
     <string name="sign_up">Sign Up</string>
@@ -12,7 +12,7 @@
     <string name="enter_otp">Enter OTP</string>
     <string name="sign_out">Log Out</string>
     <string name="please_wait">Wait</string>
-    <string name="sign_Guest">Sign In As  a Guest</string>
+    <string name="sign_Guest">Continue As A Guest</string>
     <string name="events">Events</string>
     <string name="culmyca">EC-2020</string>
 
@@ -35,6 +35,10 @@
     <string name="credits">Credits</string>
     <string name="open">open</string>
     <string name="close"> close</string>
+
+    <string name="send_sms_api" translatable="false">https://2factor.in/API/V1/9983a223-ae79-11e6-a40f-00163ef91450/SMS/</string>
+    <string name="online_fest">Online Fest</string>
+    <string name="the_show_must_go_on">The show Must go On !!</string>
 
 
 </resources>
