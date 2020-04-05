@@ -154,6 +154,8 @@
             android:text="Click Here To Continue"
             android:gravity="center"
             android:textColor="#000"
+            android:fontFamily="@font/overpass_black"
+            android:textStyle="bold"
             android:textSize="12dp" />
 
         <TextView
@@ -179,8 +181,9 @@
             android:layout_marginTop="6dp"
             android:padding="6dp"
             android:text="Didn't get a verification code?"
+            android:textStyle="bold|italic"
             android:gravity="center"
-            android:textColor="#000"
+            android:textColor="#000629"
             android:textSize="12dp" />
 
     </RelativeLayout>

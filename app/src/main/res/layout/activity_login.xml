@@ -11,11 +11,11 @@
         android:paddingTop="58dp"
         android:layout_marginLeft="10dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="70dp"
         android:layout_weight="1"
         android:src="@drawable/ec_logo" />
 
-    <TextView
+  <!--  <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
@@ -26,15 +26,14 @@
         android:text="@string/login_tite"
         android:textColor="@color/light_blue"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="0.5"
-
+        android:layout_weight="0.2"
         android:gravity="left"
         android:text="@string/continue_login_msg"
         android:textColor="@color/white"
